@@ -1,2 +1,21 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<h1>Utwórz nowe konto</h1>
+<%= form_for @user do |f| %>
+  <!-- kod wyświetlający błędy -->
+  <p>
+    <%= f.label :Login %> <br />
+    <%= f.text_field :login %>
+  </p>
+  <!-- <p>
+    <%= f.label :email %> <br />
+    <%= f.text_field :email %>
+  </p> -->
+  <p>
+    <%= f.label :Hasło %> <br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :Potwierdź_hasło %> <br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p><%= f.submit "Wyślij" %> </p>
+<% end %>
