@@ -1,0 +1,7 @@
+<h1>Tripsterzy</h1>
+
+<p id="notice"><%= notice %> </p>
+
+<% @users.each do |user| %>
+<li><b><%= user.login %></b></li>
+<% end %>

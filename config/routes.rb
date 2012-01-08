@@ -1,14 +1,14 @@
 Tripster::Application.routes.draw do
 
-  resources :users, :only => [:new, :create, :edit, :update]
+
+  resources :users, :only => [:new, :create, :edit, :update, :index]
 
   # get "users/new"
-
   # get "users/create"
-
   # get "users/edit"
-
   # get "users/update"
+
+  root :to => "users#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
