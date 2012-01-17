@@ -1,0 +1,28 @@
+<div class="row">
+<div class="span8 offset3">
+<fieldset>
+<legend>Logowanie</legend>
+<%= form_for @user_session do |f| %>
+  <!-- komunikaty błędów -->
+  <% if @user_session.errors.any? %>
+  <ul>
+  <% @user_session.errors.full_messages.each do |msg| %>
+  <li><%= msg %> </li>
+  <% end %>
+  </ul>
+  <% end %>
+  <div class="clearfix">
+  <%= f.label :login %>
+  <%= f.text_field :login %>
+  </div>
+  <div class="clearfix">
+  <%= f.label :hasło %>
+  <%= f.password_field :password %>
+  </div>
+  <div class="actions">
+  <%= f.submit "Zaloguj!" %>
+  </div>
+<% end %>
+<fieldset>
+</div>
+</div>
