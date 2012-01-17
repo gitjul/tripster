@@ -1,9 +1,13 @@
 Tripster::Application.routes.draw do
+  resource :user_sessions, :only => [:new, :create, :destroy]
 
+  # get "user_sessions/new"
+  # get "user_sessions/create"
+  # get "user_sessions/destroy"
 
   resources :users, :only => [:new, :create, :edit, :update, :index]
 
-  # get "users/new"
+  get "users/new" #ale dlaczego musiałam to odhashować, żeby był route do new?
   # get "users/create"
   # get "users/edit"
   # get "users/update"

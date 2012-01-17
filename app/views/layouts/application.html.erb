@@ -34,6 +34,7 @@
     span.top {
     color: #FFFFFF
     }
+    
     span.error {
     color: #E8270D
     }
@@ -87,9 +88,9 @@
     cursor: pointer;
     }
     
-    a:hover {
+/*    a:hover {
     text-decoration: none
-    }
+    }*/
   
     .about {
     margin-left:-10px;
@@ -105,18 +106,23 @@
   </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="fill">
-      <div class="container">
-        <a class="brand" href="/users">tripster</a>
-        <p class="copy"></p>
-        
+  <div class='topbar'>
+    <div class='fill'>
+      <div class='container'>
+        <a class='brand' href='/users'>tripster</a>
+        <p class='copy'><!--tu może być opis typu: Podróże cośtam--></p>
+        <div class='pull-right'>
+          <br />
+          <span class='top'><%= link_to 'Zarejestruj się', users_new_path %></span>
+          <span class='top'><%= link_to 'Zaloguj', new_user_sessions_path %></span>
+          <span class='top'><%= link_to 'Wyloguj', user_sessions_path, method: :destroy %></span>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="container">
-    <div class="content">
+  <div class='container'>
+    <div class='content'>
 <%= yield %>
     </div> <!-- /content -->
     <footer>
