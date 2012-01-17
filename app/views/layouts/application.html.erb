@@ -3,12 +3,125 @@
 <head>
   <title>Tripster</title>
   <%= stylesheet_link_tag    "application" %>
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <style type="text/css">
+    /* Override some defaults */
+    html, body {
+    background-color: #eee;
+    }
+    body {
+    padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+    }
+    .container > footer p {
+    text-align: center; /* center align it with the container */
+    }
+
+    /* The white background content wrapper */
+    .content {
+    background-color: #fff;
+    padding: 20px;
+    margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+    -webkit-border-radius: 0 0 6px 6px;
+       -moz-border-radius: 0 0 6px 6px;
+            border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+            box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    }
+    
+    span.top {
+    color: #FFFFFF
+    }
+    span.error {
+    color: #E8270D
+    }
+    
+    label {
+    padding-right: 15px
+    }
+    
+    div.error {
+    padding-top: 4px;
+    text-align: center;
+    color: #FC8A77
+    }
+    
+    .content > p {
+    text-align: center
+    }
+    
+    .note {
+    margin-bottom: 20px
+    }
+    
+    /* Page header tweaks */
+    .page-header {
+    background-color: #f5f5f5;
+    padding: 20px 20px 5px;
+    margin: -20px -20px 20px;
+    }
+    
+    .span14 {
+    margin-left: 0
+    }
+    
+    .row {
+    margin-left: 0;
+    }
+    
+    .ph {
+    margin: 2px 6px 0px
+    }
+    
+    .copy {
+    font-size: 14;
+    color: #C8C3C3;
+    font-style: italic;
+    line-height: 1;
+    display: inline
+    }
+    
+    a {
+    cursor: pointer;
+    }
+    
+    a:hover {
+    text-decoration: none
+    }
+  
+    .about {
+    margin-left:-10px;
+    width:100%;
+    border-right: 1px solid #EEEEEE
+    }
+    
+    .down {
+    margin-left: -20px;
+    width: 100%;
+    text-align: center
+    }
+  </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <a class="brand" href="#">tripster</a>
+        <p class="copy"></p>
+        
+      </div>
+    </div>
+  </div>
 
+  <div class="container">
+    <div class="content">
 <%= yield %>
-
+    </div> <!-- /content -->
+    <footer>
+        <p>&copy; Barbara Żądło & Julia Jacobs 2012</p>
+    </footer>    
+  </div>  <!-- /container -->  
 </body>
 </html>
