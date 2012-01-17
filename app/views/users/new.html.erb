@@ -1,29 +1,32 @@
-<h1>Utwórz nowe konto</h1>
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-  <ul>
-  <% @user.errors.full_messages.each do |msg| %>
-  <li><%= msg %> </li>
+<div class="row">
+<div class="span8 offset3">
+<fieldset>
+  <legend>Rejestracja konta</legend>
+  <%= form_for @user do |f| %>
+    <!-- komunikaty błędów -->
+    <% if @user.errors.any? %>
+    <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %> </li>
+    <% end %>
+    </ul>
+    <% end %>
+    <div class="clearfix">
+      <%= f.label :Login %>
+      <%= f.text_field(:login, :class => 'xlarge', :size => '30') %>
+    </div>
+    <div class="clearfix">
+      <%= f.label :Hasło %>
+      <%= f.password_field(:password, :class => 'xlarge', :size => '30') %>
+    </div>
+    <div class="clearfix">
+      <%= f.label :Potwierdź_hasło %>
+      <%= f.password_field(:password_confirmation, :class => 'xlarge', :size => '30') %>
+    </div>
+    <div class="actions">
+    <%= f.submit "Stwórz konto!" %>
+    </div>
   <% end %>
-  </ul>
-  <% end %>
-
-  <!-- kod wyświetlający błędy -->
-  <p>
-    <%= f.label :Login %> <br />
-    <%= f.text_field :login %>
-  </p>
-  <!-- <p>
-    <%= f.label :email %> <br />
-    <%= f.text_field :email %>
-  </p> -->
-  <p>
-    <%= f.label :Hasło %> <br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label :Potwierdź_hasło %> <br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit "Wyślij" %> </p>
-<% end %>
+<fieldset>
+</div>
+</div>
