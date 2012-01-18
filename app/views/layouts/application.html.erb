@@ -113,9 +113,9 @@
         <p class='copy'><!--tu może być opis typu: Podróże cośtam--></p>
         <div class='pull-right'>
           <br />
-          <span class='top'><%= link_to 'Zarejestruj się', users_new_path %></span>
+          <span class='top'><%= link_to 'Zarejestruj się', new_user_path %></span>
           <span class='top'><%= link_to 'Zaloguj', new_user_sessions_path %></span>
-          <span class='top'><%= link_to 'Wyloguj', user_sessions_path, method: :destroy %></span> <!-- wiem że to jest źle, ale chciałam żeby odpaliło chociaż póki co -->
+          <span class='top'><%= link_to 'Wyloguj', user_sessions_path, method: :delete %></span>
         </div>
       </div>
     </div>
