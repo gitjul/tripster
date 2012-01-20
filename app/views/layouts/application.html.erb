@@ -118,7 +118,7 @@
           <span class='top'><%= link_to 'Zaloguj', new_user_sessions_path %></span>
           <% end %>
           <% unless current_user.nil? %> <span class='top'>Witaj, <%= current_user.login %>. 
-          <%= link_to 'Wyloguj', user_sessions_path, method: :delete %></span>
+          <%= link_to 'Wyloguj', user_sessions_path, :method => :delete %></span>
           <% end %>
         </div>
       </div>
@@ -130,7 +130,7 @@
 <%= yield %>
     </div> <!-- /content -->
     <footer>
-        <p>&copy; Barbara Żądło & Julia Jacobs 2012</p>
+        <p>&copy; Barbara Żądło &amp; Julia Jacobs 2012</p>
     </footer>    
   </div>  <!-- /container -->  
 </body>
