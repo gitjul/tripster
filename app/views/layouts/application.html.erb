@@ -113,9 +113,12 @@
         <p class='copy'><!--tu może być opis typu: Podróże cośtam--></p>
         <div class='pull-right'>
           <br />
-          <span class='top'><%= link_to 'Zarejestruj się', new_user_path %></span>
+          <% unless current_user %>
+          <span class='top'><%= link_to 'Zarejestruj się', new_user_path %></span> /
           <span class='top'><%= link_to 'Zaloguj', new_user_sessions_path %></span>
-          <span class='top'><%= link_to 'Wyloguj', user_sessions_path, method: :delete %></span>
+          <% end %>
+          <% unless current_user.nil? %> <span class='top'><%= link_to 'Wyloguj', user_sessions_path, method: :delete %></span>
+          <% end %>
         </div>
       </div>
     </div>
