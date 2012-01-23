@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %> </p>
+<p>
+  <b>Login</b>
+  <%= @user.login %>
+</p>
+<p>
+  <b>ID</b>
+  <%= @user.id %>
+</p>
+<div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
+<div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
+

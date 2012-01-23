@@ -21,6 +21,11 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  # GET /users/:id
+  def show
+    @user = User.find(params[:id])
+  end
 
   # GET /users/edit
   def edit
