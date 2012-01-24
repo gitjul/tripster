@@ -16,9 +16,12 @@ class UserSessionsController < ApplicationController
   
   before_filter :authenticate, :only => [:destroy]
   def destroy
-    @user_session = UserSession.find
-    @user_session.destroy
-    flash[:notice] = "Pomyślnie wylogowano."
-    redirect_to root_url
+    if @user_session = UserSession.find
+      @user_session.destroy
+      flash[:notice] = "Pomyślnie wylogowano."
+      redirect_to root_url
+    else 
+      puts "Próbujesz wykonać niedozwoloną akcję."
+    end
   end
 end
