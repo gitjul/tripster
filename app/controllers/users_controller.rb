@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class UsersController < ApplicationController
+  
+  before_filter :authenticate, :only => [:edit]
 
   # GET /users
   def index
