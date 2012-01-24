@@ -1,34 +1,44 @@
-<h1>Edytuj profil</h1>
-<%= form_for @user do |f| %>
-  <!-- kod wyświetlający błędy -->
-  <p>
-  <%= f.label :pełne_imię %>
-  <%= f.text_field :fullname %>
-  </p>
-  <p>
-  <%= f.label :email %>
-  <%= f.text_field :email %>
-  </p>
-  <p>
+<div class="row">
+<div class="span8 offset3">
+<fieldset>
+  <legend>Edycja profilu</legend>
+  <%= form_for @user do |f| %>
+  <!-- komunikaty błędów -->
+  <% if @user.errors.any? %>
+  <ul>
+  <% @user.errors.full_messages.each do |msg| %>
+  <li><%= msg %> </li>
+  <% end %>
+  </ul>
+  <% end %>
+  <div class="clearfix">
+    <%= f.label :pełne_imię %>
+    <%= f.text_field :fullname %>
+  </div>
+  <div class="clearfix">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="clearfix">
   <%= f.label :o_mnie %>
-  <%= f.text_field :bio %>
-  </p>
-  <p>
+  <%= f.text_area(:bio, :rows => '3') %>
+  </div>
+  <div class="clearfix">
   <%= f.label :gdzie_obecnie_przebywasz? %>
   <%= f.text_field :location %>
-  </p>
-  <br />
-  <p>
-  <%= f.label :stare_hasło %>
-  <%= f.password_field :password %>
-  </p>
-  <p>
+  </div>
+  <p><center><h5>Zmiana hasła</h5>
+  <p><span class="label notice">nie wpisuj nic w poniższych dwóch polach, jeśli nie chcesz zmieniać hasła.</span></p></center>
+  <div class="clearfix">
   <%= f.label :nowe_hasło %>
   <%= f.password_field :password %>
-  </p>
-  <p>
+  </div>
+  <div class="clearfix">
   <%= f.label :potwierdź_nowe_hasło %>
   <%= f.password_field :password_confirmation %>
-  </p>
-  <p><%= f.submit "Zapisz" %> </p>
-<% end %>
+  </div>
+  <div class="actions"><%= f.submit "Zapisz" %> </div>
+  <% end %>
+</fieldset>
+</div>
+</div>
