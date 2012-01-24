@@ -14,7 +14,6 @@ class UserSessionsController < ApplicationController
     end
   end
   
-  before_filter :authenticate, :only => [:destroy]
   def destroy
     if @user_session = UserSession.find
       @user_session.destroy
