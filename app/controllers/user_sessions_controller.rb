@@ -13,6 +13,8 @@ class UserSessionsController < ApplicationController
       render :action => 'new'
     end
   end
+  
+  before_filter :authenticate, :only => [:destroy]
   def destroy
     @user_session = UserSession.find
     @user_session.destroy
