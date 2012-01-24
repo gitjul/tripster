@@ -117,7 +117,7 @@
           <span class='top'><%= link_to 'Zarejestruj się', new_user_path %></span> /
           <span class='top'><%= link_to 'Zaloguj', new_user_sessions_path %></span>
           <% end %>
-          <% unless current_user.nil? %> <span class='top'>Witaj, <%= current_user.login %>. 
+          <% unless current_user.nil? %> <span class='top'>Witaj, <b><%= link_to "#{current_user['login']}", user_path(current_user.id) %></b>. 
           <%= link_to 'Wyloguj', user_sessions_path, :method => :delete %></span>
           <% end %>
         </div>
