@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  # GET /users/edit
+  # GET /users/:id/edit
   def edit
     @user = current_user
   end

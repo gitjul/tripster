@@ -2,30 +2,32 @@
 <%= form_for @user do |f| %>
   <!-- kod wyświetlający błędy -->
   <p>
-  <%= f.label :pełne_imię %> <br />
+  <%= f.label :pełne_imię %>
   <%= f.text_field :fullname %>
   </p>
   <p>
-  <%= f.label :e-mail %> <br />
+  <%= f.label :email %>
   <%= f.text_field :email %>
   </p>
   <p>
-  <%= f.label :o_mnie %> <br />
+  <%= f.label :o_mnie %>
   <%= f.text_field :bio %>
   </p>
   <p>
-  <%= f.label :gdzie_obecnie_przebywasz? %> <br />
+  <%= f.label :gdzie_obecnie_przebywasz? %>
   <%= f.text_field :location %>
   </p>
-  <%= f.label :stare_hasło %> <br />
+  <br />
+  <p>
+  <%= f.label :stare_hasło %>
   <%= f.password_field :password %>
   </p>
   <p>
-  <%= f.label :nowe_hasło %> <br />
+  <%= f.label :nowe_hasło %>
   <%= f.password_field :password %>
   </p>
   <p>
-  <%= f.label :potwierdź_nowe_hasło %> <br />
+  <%= f.label :potwierdź_nowe_hasło %>
   <%= f.password_field :password_confirmation %>
   </p>
   <p><%= f.submit "Zapisz" %> </p>
