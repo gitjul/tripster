@@ -7,6 +7,8 @@
   <b>ID</b>
   <%= @user.id %>
 </p>
+<% if current_user && current_user==@user %>
 <div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
+<% end %>
 <div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
 
