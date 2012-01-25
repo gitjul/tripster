@@ -13,18 +13,18 @@
     <% end %>
     <div class="clearfix">
       <%= f.label :Login %>
-      <%= f.text_field(:login, :class => 'xlarge', :size => '30') %>
+      <%= f.text_field(:login, :class => "xlarge", :size => "30") %>
     </div>
     <div class="clearfix">
       <%= f.label :Hasło %>
-      <%= f.password_field(:password, :class => 'xlarge', :size => '30') %>
+      <%= f.password_field(:password, :class => "xlarge", :size => "30") %>
     </div>
     <div class="clearfix">
       <%= f.label :Potwierdź_hasło %>
-      <%= f.password_field(:password_confirmation, :class => 'xlarge', :size => '30') %>
+      <%= f.password_field(:password_confirmation, :class => "xlarge", :size => "30") %>
     </div>
     <div class="actions">
-    <%= f.submit "Stwórz konto!" %>
+    <%= f.submit("Stwórz konto!", :class => "btn primary") %>
     </div>
   <% end %>
 <fieldset>

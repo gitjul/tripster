@@ -21,7 +21,7 @@
   </div>
   <div class="clearfix">
   <%= f.label :o_mnie %>
-  <%= f.text_area(:bio, :rows => '3') %>
+  <%= f.text_area(:bio, :rows => "3") %>
   </div>
   <div class="clearfix">
   <%= f.label :gdzie_obecnie_przebywasz? %>
@@ -37,7 +37,7 @@
   <%= f.label :potwierdź_nowe_hasło %>
   <%= f.password_field :password_confirmation %>
   </div>
-  <div class="actions"><%= f.submit "Zapisz" %> </div>
+  <div class="actions"><%= f.submit("Zapisz zmiany", :class => "btn primary" ) %> </div>
   <% end %>
 </fieldset>
 </div>
