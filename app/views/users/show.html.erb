@@ -1,12 +1,38 @@
+<div class="page header">
+  <h1><%= link_to "#{@user['login']}", user_path(@user.id) %>
+  <small>
+    <% if current_user && current_user==@user %> 
+    Twój profil
+    <% else %>
+    Profil
+    <% end %> 
+  </small>
+  </h1>
+</div>
+<hr>
 <p id="notice"><%= notice %> </p>
-<p>
-  <b>Login</b>
-  <%= @user.login %>
-</p>
-<p>
-  <b>ID</b>
-  <%= @user.id %>
-</p>
+
+
+<% unless @user.fullname.nil? || @user.fullname.empty? %>
+  <div><strong>Pełne imię: </strong><%= @user.fullname %></div>
+  <br />
+<% end %>
+
+<% unless @user.email.nil? || @user.email.empty? %>
+  <div><strong>E-mail: </strong><%= @user.email %></div>
+  <br />
+<% end %>
+
+<% unless @user.location.nil? || @user.location.empty? %>
+  <div><strong>Obecne miejsce pobytu: </strong><%= @user.location %></div>  
+  <br />
+<% end %>
+
+<% unless @user.bio.nil? || @user.bio.empty? %>
+  <div><strong>O mnie: </strong><%= @user.bio %></div>
+  <br />
+<% end %>
+<br />
 <% if current_user && current_user==@user %>
 <div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
 <% end %>
