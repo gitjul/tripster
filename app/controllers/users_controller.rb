@@ -37,8 +37,8 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Pomyślnie zmieniono profil."
-      redirect_to root_url
+      flash[:notice] = "Zapisano zmiany."
+      redirect_to user_path(@user.id)
     else
       render :action => 'edit'
     end 
