@@ -37,3 +37,4 @@ end
 
 gem 'therubyracer'
 gem 'authlogic'
+gem "strip_attributes", "~> 1.0"

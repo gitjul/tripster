@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
     config.require_password_confirmation = true
     config.validate_email_field = false
   end
+  
+  strip_attributes :except => [:password, :password_confirmation]
+  
   validates :email, :allow_blank => true,
                     :length => {:minimum => 3, :maximum => 254},
                     :uniqueness => true,
