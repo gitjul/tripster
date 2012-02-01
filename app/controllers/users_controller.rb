@@ -3,6 +3,7 @@
 class UsersController < ApplicationController
   
   before_filter :authenticate, :only => [:edit]
+  before_filter :admin_required, :only => [:delete]
 
   # GET /users
   def index
@@ -24,12 +25,12 @@ class UsersController < ApplicationController
     end
   end
   
-  # GET /users/:id
+  # GET /users/1
   def show
     @user = User.find(params[:id])
   end
 
-  # GET /users/:id/edit
+  # GET /users/1/edit
   def edit
     @user = current_user
   end
@@ -43,4 +44,13 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end 
   end
+  
+  # DELETE /users/1
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = "Usunięto użytkownika."
+    redirect_to users_url
+  end
+  
 end

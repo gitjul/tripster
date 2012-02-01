@@ -36,5 +36,8 @@
 <% if current_user && current_user==@user %>
 <div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
 <% end %>
+<% if current_user && current_user.admin? && current_user!=@user %>
+  <%= link_to "Usuń użytkownika", @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+<% end %>
 <div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
 

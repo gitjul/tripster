@@ -16,4 +16,13 @@ class ApplicationController < ActionController::Base
     redirect_to new_user_sessions_path
     end
   end
+  private
+  def admin_required
+    if !current_user
+      redirect_to new_user_session_path
+    elsif !current_user.admin?
+      flash[:notice] = "Tylko admin."
+      redirect_to root_url
+    end
+  end
 end
