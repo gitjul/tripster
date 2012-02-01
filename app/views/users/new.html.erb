@@ -12,16 +12,16 @@
     </ul>
     <% end %>
     <div class="clearfix">
-      <%= f.label :Login %>
-      <%= f.text_field(:login, :class => "xlarge", :size => "30") %>
+      <%= f.label :login, "Login" %>
+      <%= f.text_field :login %>
     </div>
     <div class="clearfix">
-      <%= f.label :Hasło %>
-      <%= f.password_field(:password, :class => "xlarge", :size => "30") %>
+      <%= f.label :password, "Hasło" %>
+      <%= f.password_field :password %>
     </div>
     <div class="clearfix">
-      <%= f.label :Potwierdź_hasło %>
-      <%= f.password_field(:password_confirmation, :class => "xlarge", :size => "30") %>
+      <%= f.label :password_confirmation, "Potwierdź hasło" %>
+      <%= f.password_field :password_confirmation %>
     </div>
     <div class="actions">
     <%= f.submit("Stwórz konto!", :class => "btn primary") %>

@@ -12,30 +12,30 @@
   </ul>
   <% end %>
   <div class="clearfix">
-    <%= f.label :pełne_imię %>
-    <%= f.text_field :fullname %>
+    <%= f.label :fullname, "Pełne imię" %>
+    <%= f.text_field(:fullname, :class => "xlarge", :size => "30") %>
   </div>
   <div class="clearfix">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.label :email, "E-mail" %>
+    <%= f.text_field(:email, :class => "xlarge", :size => "30") %>
   </div>
   <div class="clearfix">
-  <%= f.label :o_mnie %>
+  <%= f.label :obio, "O mnie" %>
   <%= f.text_area(:bio, :rows => "3") %>
   </div>
   <div class="clearfix">
-  <%= f.label :gdzie_obecnie_przebywasz? %>
-  <%= f.text_field :location %>
+  <%= f.label :location, "Miejsce pobytu" %>
+  <%= f.text_field(:location, :class => "xlarge", :size => "30") %>
   </div>
   <p><legend>Zmiana hasła</legend>
   <p><span class="label warning">nie wpisuj nic w poniższych dwóch polach, jeśli nie chcesz zmieniać hasła.</span></p></center>
   <div class="clearfix">
-  <%= f.label :nowe_hasło %>
-  <%= f.password_field :password %>
+  <%= f.label :password, "Nowe hasło" %>
+  <%= f.password_field(:password, :class => "xlarge", :size => "30") %>
   </div>
   <div class="clearfix">
-  <%= f.label :potwierdź_nowe_hasło %>
-  <%= f.password_field :password_confirmation %>
+  <%= f.label :password_confirmation, "Potwierdź nowe hasło" %>
+  <%= f.password_field(:password_confirmation, :class => "xlarge", :size => "30") %>
   </div>
   <div class="actions"><%= f.submit("Zapisz zmiany", :class => "btn primary" ) %> </div>
   <% end %>
