@@ -3,9 +3,9 @@
 <p id="notice"><%= notice %> </p>
 
 <% @users.each do |user| %>
-<li><b><%= link_to "#{user['login']}", user_path(user.id) %></b>
-  <% if current_user && current_user.admin? %>
-    <%= link_to "Usuń użytkownika", user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
-  <% end %>
+<li><b><%= link_to "#{user['login']}", user_path(user.id) %></b> 
+<% if current_user && current_user.admin? && current_user!=user %>
+    <%= link_to "Usuń", user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+<% end %>
 </li>
 <% end %>
