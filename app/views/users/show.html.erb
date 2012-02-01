@@ -29,7 +29,7 @@
 <% end %>
 
 <% unless @user.bio.nil? || @user.bio.empty? %>
-  <div><strong>O mnie: </strong><%= @user.bio %></div>
+  <div><strong>O mnie: </strong><%= simple_format(@user.bio) %></div>
   <br />
 <% end %>
 <br />
