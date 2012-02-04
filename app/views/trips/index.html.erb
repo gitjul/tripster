@@ -1,7 +1,7 @@
 <h1>Ostatnio dodane</h1>
 
 <div id='trips'>
-  <% @trips.each do |trip| %>
+  <% @trips.all.each do |trip| %>
   <div id='trip-<%= trip.id %>' class='trip'>
     <div class='map'>
       <% unless trip.points.empty? %>
@@ -28,3 +28,4 @@
   </div>
   <% end %>
 </div>
+<%= paginate @trips %>

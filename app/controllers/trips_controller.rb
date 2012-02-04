@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   before_filter :admin_required, :only => [:destroy]
 
   def index
-    @trips = Trip.order('created_at desc').all
+    @trips = Trip.order('created_at desc').page(params[:page]).per(10)
   end
 
   def show
