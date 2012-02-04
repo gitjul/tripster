@@ -10,3 +10,35 @@
         height: 80px;
     }
 }
+
+#trips {
+    width: 90%;
+    margin: 0 auto;
+    
+    .trip {
+        margin-top: 32px;
+        .map {
+            width: 50%;
+            float: left;
+        }
+        .details {
+            width: 40%;
+            float: left;
+        }
+    }
+    .next {
+        clear: both;
+    }
+}
+
+#trip-new {
+    #trip-form {
+        float: left;
+        width: 450px;
+    }
+    #map {
+        float: left;
+        width: 450px;
+        height: 220px;
+    }
+}

@@ -8,3 +8,7 @@
 .links {
     text-align: right;
 }
+
+.clear {
+    clear: both;
+}

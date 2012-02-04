@@ -1,5 +1,52 @@
 <h1>Dodaj podróż</h1>
 
+<% content_for :head do %>
+    <%= javascript_include_tag '//maps.googleapis.com/maps/api/js?sensor=false' %>
+    <script type="text/javascript">
+          var stockholm = new google.maps.LatLng(59.32522, 18.07002);
+          var parliament = new google.maps.LatLng(59.327383, 18.06747);
+          var markers = [];
+          var map;
+
+          function map() {
+            var mapOptions = {
+              zoom: 13,
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              center: stockholm
+            };
+            map = new google.maps.Map(document.getElementById("map"),
+                    mapOptions);
+            addMarker('trip_points_attributes_0');
+          }
+
+          function addMarker(id) {
+            var marker = new google.maps.Marker({
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              position: map.getCenter()
+            });
+            marker.id = id;
+            $('#' + id + '_lat').val(marker.getPosition().lat());
+            $('#' + id + '_lng').val(marker.getPosition().lng());
+            google.maps.event.addListener(marker, 'dragend', function() {
+                $('#' + this.id + '_lat').val(marker.getPosition().lat());
+                $('#' + this.id + '_lng').val(marker.getPosition().lng());
+            });
+            markers.push(marker);
+          }
+
+          function removeMarker(id) {
+            for(index in markers) {
+                var marker = markers[index];
+                if(marker.id == id) {
+                    marker.setMap(null);
+                }
+            }
+          }
+    </script>
+<% end %>
+
 <%= form_for @trip do |f| %>
 <div id="trip-new">
   <div id="trip-form">
@@ -20,8 +67,9 @@
     </div>
   </div>
   <div id="map">
-    
+    map
   </div>
+  <div class='clear'></div>
   <h2>Punkty</h2>
   <div id='points'>
     <%= render :partial => 'trips/point', :locals => { :f => f, :object => Point.new, :index => 0, :delete => true } %>

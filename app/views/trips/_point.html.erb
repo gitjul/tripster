@@ -1,5 +1,7 @@
 <div class='point'>
   <%= f.fields_for :points, object, :child_index => index do |fields| %>
+    <%= fields.hidden_field :lat %>
+    <%= fields.hidden_field :lng %>
     <div class='field'>
       <%= fields.label :name, 'Nazwa punktu' %><br/>
       <%= fields.text_field :name %>
@@ -11,7 +13,10 @@
   <% end %>
   <% if local_assigns[:delete] %>
     <div class='links'>
-      <%= link_to_function 'Usuń', "$(this).parent().parent().remove()" %>
+      <%= link_to_function 'Usuń', "$(this).parent().parent().remove(); removeMarker('trip_points_attributes_#{index}')" %>
     </div>
+  <% end %>
+  <%= javascript_tag do %>
+    addMarker("trip_points_attributes_<%= index %>");
   <% end %>
 </div>

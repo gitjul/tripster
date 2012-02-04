@@ -105,8 +105,9 @@
     text-align: center
     }
   </style>
+  <%= yield :head %>
 </head>
-<body>
+<body onload="if(typeof map == 'function') { map() }">
   <div class='topbar'>
     <div class='fill'>
       <div class='container'>

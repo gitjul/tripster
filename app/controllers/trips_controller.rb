@@ -1,5 +1,7 @@
+# encoding: utf-8
 class TripsController < ApplicationController
   before_filter :authenticate
+  before_filter :admin_required, :only => [:destroy]
 
   def index
     @trips = Trip.order('created_at desc').all
@@ -23,5 +25,11 @@ class TripsController < ApplicationController
         format.html { render :action => 'new' }
       end
     end
+  end
+
+  def destroy
+    @trip = Trip.find(params[:id])
+    @trip.destroy
+    redirect_to trips_path, :notice => "Poprawnie usunięto podróż ##{@trip.id}"
   end
 end

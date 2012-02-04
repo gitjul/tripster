@@ -8,4 +8,11 @@ module TripsHelper
       $('#points').append(html);
     }
   end
+
+  def map_tag(lat, lng, options = {})
+    sensor = options[:sensor] || false
+    size   = options[:size] || "200x200"
+    zoom   = options[:zoom] || 11
+    image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{lat},#{lng}&zoom=#{zoom}&size=#{size}&sensor=#{sensor}"
+  end
 end
