@@ -1,0 +1,9 @@
+<h1>Ostatnio dodane</h1>
+
+<div id='trips'>
+  <% @trips.each do |trip| %>
+  <div id='trip-<%= trip.id %>' class='trip'>
+    <%= link_to trip.name, trip %>
+  </div>
+  <% end %>
+</div>

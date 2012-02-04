@@ -128,7 +128,12 @@
 
   <div class='container'>
     <div class='content'>
-<%= yield %>
+      <div class='links'>
+        <%= link_to 'Ostatnio dodane', trips_path %>
+        &middot;
+        <%= link_to 'Dodaj podróż', new_trip_path %>
+      </div>
+      <%= yield %>
     </div> <!-- /content -->
     <footer>
         <p>&copy; Barbara Żądło &amp; Julia Jacobs 2012</p>

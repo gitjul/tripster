@@ -1,4 +1,7 @@
 Tripster::Application.routes.draw do
+
+  resources :trips
+
   resource :user_sessions, :only => [:new, :create, :destroy]
 
   # get "user_sessions/new"

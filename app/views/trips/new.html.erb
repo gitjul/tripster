@@ -1,0 +1,27 @@
+<h1>Dodaj podróż</h1>
+
+<%= form_for @trip do |f| %>
+<div id="trip-new">
+  <div id="trip-form">
+    <% unless f.object.errors.empty? %>
+    <ul class='errors'>
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+    <% end %>
+    <div class="field">
+      <%= f.label :name, 'Nazwa' %><br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description, 'Opis' %><br/>
+      <%= f.text_area :description, :style => 'height: 150px' %>
+    </div>
+  </div>
+  <div id="map">
+    
+  </div>
+  <%= f.submit 'Zapisz' %>
+</div>
+<% end %>
