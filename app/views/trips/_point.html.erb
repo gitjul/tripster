@@ -1,0 +1,17 @@
+<div class='point'>
+  <%= f.fields_for :points, object, :child_index => index do |fields| %>
+    <div class='field'>
+      <%= fields.label :name, 'Nazwa punktu' %><br/>
+      <%= fields.text_field :name %>
+    </div>
+    <div class='field'>
+      <%= fields.label :description, 'Relacja' %><br/>
+      <%= fields.text_area :description %>
+    </div>
+  <% end %>
+  <% if local_assigns[:delete] %>
+    <div class='links'>
+      <%= link_to_function 'Usuń', "$(this).parent().parent().remove()" %>
+    </div>
+  <% end %>
+</div>

@@ -2,3 +2,14 @@
 <div class='description'>
   <%= @trip.description %>
 </div>
+<h3>Punkty</h3>
+<div id='points'>
+  <% @trip.points.all.each do |point| %>
+  <div class='point' id='point-<%= point.id %>'>
+    <div class='name description'>
+      <%= point.name %><br/>
+      <%= point.description %>
+    </div>
+  </div>
+  <% end %>
+</div>

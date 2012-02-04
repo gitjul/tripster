@@ -1,3 +1,12 @@
 // Place all the styles related to the trips controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#points {
+    width: 600px;
+
+    textarea {
+        width: 350px;
+        height: 80px;
+    }
+}
