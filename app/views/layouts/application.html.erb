@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <title>Tripster</title>
   <%= stylesheet_link_tag    "application" %>
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <style type="text/css">
@@ -12,11 +11,15 @@
     html, body {
     background-color: #eee;
     }
+    
     body {
     padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
     }
+    
     .container > footer p {
     text-align: center; /* center align it with the container */
+    color: #BFBFBF;
+    padding-top: 15px;
     }
 
     /* The white background content wrapper */
@@ -32,32 +35,6 @@
             box-shadow: 0 1px 2px rgba(0,0,0,.15);
     }
     
-    span.top {
-    color: #FFFFFF
-    }
-    
-    span.error {
-    color: #E8270D
-    }
-    
-    label {
-    padding-right: 15px
-    }
-    
-    div.error {
-    padding-top: 4px;
-    text-align: center;
-    color: #FC8A77
-    }
-    
-    .content > p {
-    text-align: center
-    }
-    
-    .note {
-    margin-bottom: 20px
-    }
-    
     /* Page header tweaks */
     .page-header {
     background-color: #f5f5f5;
@@ -65,71 +42,40 @@
     margin: -20px -20px 20px;
     }
     
-    .span14 {
-    margin-left: 0
-    }
+    a:hover { text-decoration: none; }
     
-    .row {
-    margin-left: 0;
-    }
+    .field { margin-bottom: 8px; }
     
-    .ph {
-    margin: 2px 6px 0px
-    }
+    .field > input { margin-bottom: 0px; }
     
-    .copy {
-    font-size: 14;
-    color: #C8C3C3;
-    font-style: italic;
-    line-height: 1;
-    display: inline
-    }
+    .field > p.help-block { margin-top: 0px; }
     
-    a {
-    cursor: pointer;
-    }
-    
-/*    a:hover {
-    text-decoration: none
-    }*/
-  
-    .about {
-    margin-left:-10px;
-    width:100%;
-    border-right: 1px solid #EEEEEE
-    }
-    
-    .down {
-    margin-left: -20px;
-    width: 100%;
-    text-align: center
-    }
   </style>
   <%= yield :head %>
 </head>
 <body onload="if(typeof map == 'function') { map() }">
-  <div class='topbar'>
-    <div class='fill'>
-      <div class='container'>
-        <a class='brand' href='/users'>tripster</a>
-        <p class='copy'><!--tu może być opis typu: Podróże cośtam--></p>
-        <div class='pull-right'>
-          <br />
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand" href="/users">tripster</a>
+        <div class="pull-right">
+          <ul class="nav">
           <% unless current_user %>
-          <span class='top'><%= link_to 'Zarejestruj się', new_user_path %></span> /
-          <span class='top'><%= link_to 'Zaloguj', new_user_sessions_path %></span>
+          <li class><%= link_to "Zarejestruj się", new_user_path %></li>
+          <li class><%= link_to "Zaloguj", new_user_sessions_path %></li>
           <% end %>
-          <% unless current_user.nil? %> <span class='top'>Witaj, <b><%= link_to "#{current_user['login']}", user_path(current_user.id) %></b>. 
-          <%= link_to 'Wyloguj', user_sessions_path, :method => :delete %></span>
+          <% unless current_user.nil? %> 
+          <li class><%= link_to "Witaj, #{current_user['login']}", user_path(current_user.id) %></li>
+          <li class><%= link_to "Wyloguj", user_sessions_path, :method => :delete %></li>
           <% end %>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-
-  <div class='container'>
-    <div class='content'>
-      <div class='links'>
+  <div class="container">
+    <div class="content">
+      <div class="links">
         <%= link_to 'Ostatnio dodane', trips_path %>
         &middot;
         <%= link_to 'Dodaj podróż', new_trip_path %>
