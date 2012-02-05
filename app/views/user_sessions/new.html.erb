@@ -1,8 +1,7 @@
 <div class="row">
-<div class="span8 offset3">
-<fieldset>
-<legend>Logowanie</legend>
-<%= form_for @user_session do |f| %>
+<div class="span6 offset3">
+<h2>Logowanie</h2>
+<%= form_for @user_session, :html => {:class => "well"} do |f| %>
   <!-- komunikaty błędów -->
   <% if @user_session.errors.any? %>
   <ul>
@@ -11,18 +10,9 @@
   <% end %>
   </ul>
   <% end %>
-  <div class="clearfix">
-  <%= f.label :login, "Login" %>
-  <%= f.text_field :login %>
-  </div>
-  <div class="clearfix">
-  <%= f.label :password, "Hasło" %>
-  <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-  <%= f.submit("Zaloguj!", :class => "btn primary") %>
-  </div>
+  <%= f.text_field(:login, :class => "input-small", :placeholder => "Login") %>
+  <%= f.password_field(:password, :class => "input-small", :placeholder => "Hasło") %>
+  <%= f.submit("Zaloguj!", :class => "btn btn-primary") %>
 <% end %>
-<fieldset>
 </div>
 </div>
