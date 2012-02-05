@@ -3,11 +3,21 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #points {
-    width: 600px;
+    width: 650px;
 
     textarea {
         width: 350px;
         height: 80px;
+    }
+
+    .point {
+        border-bottom: 1px solid #eaeaea;
+        padding: 4px;
+        clear: both;
+    }
+
+    .field {
+        padding: 10px;
     }
 }
 

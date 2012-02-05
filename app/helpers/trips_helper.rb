@@ -6,6 +6,7 @@ module TripsHelper
       var new_object_id = new Date().getTime();
       var html = '#{escape_javascript html}'.replace(/to_replace/g, new_object_id);
       $('#points').append(html);
+      addMarker("trip_points_attributes_" + new_object_id);
     }
   end
 

@@ -26,6 +26,7 @@
 <% end %>
 
 <h1><%= @trip.name %></h1>
+<%= link_to 'Edytuj', edit_trip_path(@trip) if current_user.admin %>
 <div class='description'>
   <%= @trip.description %>
 </div>
@@ -37,8 +38,9 @@
   <% @trip.points.all.each do |point| %>
   <div class='point' id='point-<%= point.id %>'>
     <div class='name description'>
-      <%= point.name %><br/>
+      <h4><%= point.name %></h4><br/>
       <%= point.description %>
+      <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
     </div>
   </div>
   <% end %>

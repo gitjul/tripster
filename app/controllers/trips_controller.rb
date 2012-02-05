@@ -27,6 +27,21 @@ class TripsController < ApplicationController
     end
   end
 
+  def edit
+    @trip = Trip.find(params[:id])
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    respond_to do |format|
+      if @trip.update_attributes(params[:trip])
+        format.html { redirect_to @trip, :notice => "Poprawnie zaaktualizowano podróż ##{@trip.id}" }
+      else
+        format.html { render :action => 'edit' }
+      end
+    end
+  end
+
   def destroy
     @trip = Trip.find(params[:id])
     @trip.destroy
