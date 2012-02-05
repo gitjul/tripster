@@ -5,3 +5,10 @@
  *= require_self
  *= require_tree . 
 */
+.links {
+    text-align: right;
+}
+
+.clear {
+    clear: both;
+}

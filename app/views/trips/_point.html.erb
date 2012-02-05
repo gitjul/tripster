@@ -1,0 +1,32 @@
+<div class='point'>
+  <%= f.fields_for :points, object, :child_index => index do |fields| %>
+    <%= fields.hidden_field :lat %>
+    <%= fields.hidden_field :lng %>
+    <div class='field'>
+      <%= fields.label :name, 'Nazwa punktu' %><br/>
+      <%= fields.text_field :name %>
+    </div>
+    <% unless object.new_record? %>
+    <div class='field'>
+      <%= fields.check_box :_destroy %>
+      <%= fields.label :_destroy, 'Usuń punkt' %>
+      lub
+      <%= link_to_function 'Pokaż na mapie', %{
+            addMarker("trip_points_attributes_#{index}", #{object.lat}, #{object.lng});
+        } %>
+    </div>
+    <% end %>
+    <div class='field'>
+      <%= fields.label :description, 'Relacja' %><br/>
+      <%= fields.text_area :description %>
+    </div>
+  <% end %>
+  <% if object.new_record? %>
+    <div class='links'>
+      <%= link_to_function 'Usuń', "$(this).parent().parent().remove(); removeMarker('trip_points_attributes_#{index}')" %>
+    </div>
+  <% end %>
+  <% javascript_tag do %>
+    addMarker("trip_points_attributes_<%= index %>");
+  <% end %>
+</div>

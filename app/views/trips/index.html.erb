@@ -1,0 +1,33 @@
+<h1>Ostatnio dodane</h1>
+
+<div id='trips'>
+  <% @trips.all.each do |trip| %>
+  <div id='trip-<%= trip.id %>' class='trip'>
+    <div class='map'>
+      <% unless trip.points.empty? %>
+        <%= map_tag trip.points.first.lat, trip.points.first.lng, :size => '400x200' %>
+      <% end %>
+    </div>
+    <div class='details'>
+        <h3><%= trip.name %></h3>
+        <div class='user'>
+          <%= link_to trip.user.login, trip.user %>
+        </div>
+        <div class='description'>
+          <%= trip.description %>
+        </div>
+        <div class='links'>
+          <%= link_to 'Więcej', trip %>
+          <% if current_user.admin %>
+            &middot;
+            <%= link_to 'Edytuj', edit_trip_path(trip) %>
+            &middot;
+            <%= link_to 'Usuń', trip, :method => :delete, :confirm => 'Na pewno chcesz usunąc?' %>
+          <% end %>
+        </div>
+      </div>
+      <div class='next'></div>
+  </div>
+  <% end %>
+</div>
+<%= paginate @trips %>

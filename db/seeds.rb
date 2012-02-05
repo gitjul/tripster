@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-user = User.new(:login => 'jul', :password => 'password', :password_confirmation => 'password')
-user.save
-user.update_attribute(:admin, true)
+['jul', 'basia'].each do |login|
+  user = User.new(:login => login, :password => 'password', :password_confirmation => 'password')
+  user.save
+  user.update_attribute(:admin, true)
+end

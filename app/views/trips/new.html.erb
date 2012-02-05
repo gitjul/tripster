@@ -1,0 +1,5 @@
+<h1>Dodaj podróż</h1>
+
+<%= form_for @trip do |f| %>
+    <%= render :partial => "trips/form", :locals => { :f => f } %>
+<% end %>
