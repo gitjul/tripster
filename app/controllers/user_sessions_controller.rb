@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
     puts params[:user_session]
     if @user_session.save
       flash[:notice] = "Pomyślnie zalogowano."
-      redirect_to root_url
+      redirect_back_or_default root_url
     else
       render :action => 'new'
     end
