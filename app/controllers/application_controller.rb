@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper :all
@@ -17,6 +18,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     unless current_user
     store_location
+    flash[:notice] = "Musisz być zalogowany by wykonać tę akcję."
     redirect_to new_user_sessions_path
     end
   end
@@ -34,7 +36,7 @@ class ApplicationController < ActionController::Base
     if !current_user
       redirect_to new_user_session_path
     elsif !current_user.admin?
-      flash[:notice] = "Tylko admin."
+      flash[:notice] = "Tylko administrator może wykonać tę akcję."
       redirect_to root_url
     end
   end
