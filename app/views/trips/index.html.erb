@@ -18,11 +18,11 @@
         </div>
         <div class='links'>
           <%= link_to 'Więcej', trip %>
-          <% if current_user.admin %>
+          <% if current_user && current_user.admin? %>
             &middot;
             <%= link_to 'Edytuj', edit_trip_path(trip) %>
             &middot;
-            <%= link_to 'Usuń', trip, :method => :delete, :confirm => 'Na pewno chcesz usunąc?' %>
+            <%= link_to 'Usuń', trip, :method => :delete, :confirm => 'Na pewno chcesz usunąć?' %>
           <% end %>
         </div>
       </div>
