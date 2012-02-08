@@ -1,6 +1,6 @@
 # encoding: utf-8
 class TripsController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, :only => [:new]
   before_filter :admin_required, :only => [:destroy]
 
   def index
