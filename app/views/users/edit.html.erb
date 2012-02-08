@@ -1,6 +1,6 @@
 <div class="row">
 <div class="span6 offset4">
-  <h2>Edycja profilu</2>
+  <h2>Edycja profilu</h2>
   <%= form_for @user do |f| %>
   <!-- komunikaty błędów -->
   <% if @user.errors.any? %>
@@ -36,7 +36,9 @@
   <%= f.label :password_confirmation, "Potwierdź nowe hasło:" %>
   <%= f.password_field(:password_confirmation, :class => "input-xlarge", :size => "30") %>
   </div>
-  <div class="actions"><%= f.submit("Zapisz zmiany", :class => "btn btn-large btn-primary" ) %> </div>
+  <div class="actions"><%= f.submit('Zapisz zmiany', :class => "btn btn-large btn-primary" ) %>
+  <%= link_to('Powrót', @user, :class => "btn btn-large next" ) %></div>
+  
   <% end %>
 </fieldset>
 </div>

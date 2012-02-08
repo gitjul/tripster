@@ -34,3 +34,8 @@
     padding-right: 16px;
     margin-right: 10px;
     }
+    
+    .btn.next { display: inline; }
+    
+    .btn.btn-large.btn-primary { margin-bottom: 4px; } /* Even out buttons */
+    
