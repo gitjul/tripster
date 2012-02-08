@@ -25,3 +25,12 @@
     }
     
     a:hover { text-decoration: none; }
+    
+    .nav-pills.big > li > a { 
+    font-size: 20px; 
+    padding-top: 12px; 
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-right: 10px;
+    }

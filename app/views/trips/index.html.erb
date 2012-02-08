@@ -1,4 +1,10 @@
-<h1>Ostatnio dodane</h1>
+<ul class="nav nav-pills big">
+  <li class="active"><%= link_to 'Podróże', trips_path %></li>
+  <li class><%= link_to 'Tripsterzy', users_path %></li>
+  <span class="pull-right">
+  <%= link_to('Dodaj podróż', new_trip_path, :class => "btn btn-success btn-large") %>
+  </span>
+</ul>
 
 <div id='trips'>
   <% @trips.all.each do |trip| %>
