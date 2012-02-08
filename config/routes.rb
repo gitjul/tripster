@@ -15,7 +15,7 @@ Tripster::Application.routes.draw do
   # get "users/edit"
   # get "users/update"
 
-  root :to => "users#index"
+  root :to => "trips#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
