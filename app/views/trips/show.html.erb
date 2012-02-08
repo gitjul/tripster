@@ -26,7 +26,7 @@
 <% end %>
 
 <h1><%= @trip.name %></h1>
-<%= link_to 'Edytuj', edit_trip_path(@trip) if current_user.admin %>
+<%= link_to 'Edytuj', edit_trip_path(@trip) if current_user && current_user.admin? %>
 <div class='description'>
   <%= @trip.description %>
 </div>
