@@ -1,43 +1,54 @@
-<div class="page header">
-  <h1><%= link_to "#{@user['login']}", user_path(@user.id) %>
-  <small>
-    <% if current_user && current_user==@user %> 
-    Twój profil
-    <% else %>
-    Profil
-    <% end %> 
-  </small>
-  </h1>
+<div class="row">
+  <div class="span12">
+    <div class="user-header">
+      <h1 class="nextto"><%= link_to "#{@user['login']}", user_path(@user.id) %>
+      <small>
+        <% if current_user && current_user==@user %>
+        Twój profil
+        <% else %>
+        Profil
+        <% end %>
+      </small>
+      </h1>
+      <% if current_user && current_user==@user %>
+      <span class="pull-right">
+        <%= link_to('Dodaj podróż', new_trip_path, :class => "btn btn-success btn-large") %>
+      </span>
+      <% end %>
+    </div>
+  </div>
 </div>
-<hr>
-<p id="notice"><%= notice %> </p>
-
-
-<% unless @user.fullname.nil? || @user.fullname.empty? %>
-  <div><strong>Pełne imię: </strong><%= @user.fullname %></div>
-  <br />
-<% end %>
-
-<% unless @user.email.nil? || @user.email.empty? %>
-  <div><strong>E-mail: </strong><%= @user.email %></div>
-  <br />
-<% end %>
-
-<% unless @user.location.nil? || @user.location.empty? %>
-  <div><strong>Obecne miejsce pobytu: </strong><%= @user.location %></div>  
-  <br />
-<% end %>
-
-<% unless @user.bio.nil? || @user.bio.empty? %>
-  <div><strong>O mnie: </strong><%= simple_format(@user.bio) %></div>
-  <br />
-<% end %>
-<br />
-<% if current_user && current_user==@user %>
-<div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
-<% end %>
-<% if current_user && current_user.admin? && current_user!=@user %>
-  <%= link_to "Usuń użytkownika", @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
-<% end %>
-<div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
-
+<div class="row">
+  <div class="span4 about">
+    <%= image_tag("default_avatar.jpg", :alt=> "Defaultowy avatar", :title=> "Defaultowy avatar", :size => "150x150", :class => "avatar") %>
+    <% if current_user && current_user==@user %>
+      <div><%= link_to('Zmień obrazek profilowy', '#', :class => "btn btn-small") %></div>
+    <% end %>
+    <div class="userinfo">
+      <% unless @user.fullname.nil? || @user.fullname.empty? %>
+        <div><strong><%= @user.fullname %></strong></div>
+      <% end %>
+      <% unless @user.email.nil? || @user.email.empty? %>
+        <div><%= @user.email %></div>
+      <% end %>
+      <% unless @user.location.nil? || @user.location.empty? %>
+        <div><%= @user.location %></div>
+      <% end %>
+      <% unless @user.bio.nil? || @user.bio.empty? %>
+        <div><i><O mnie:<%= simple_format(@user.bio) %></i></div>
+      <% end %>
+    </div>
+    <br />
+    <% if current_user && current_user==@user %>
+    <div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
+    <% end %>
+    <% if current_user && current_user.admin? && current_user!=@user %>
+      <%= link_to "Usuń użytkownika", @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+    <% end %>
+    <div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
+  </div>
+  <div class="span8">
+    <p id="notice"><%= notice %></p>
+    <p>Tu będą podróże użytkownika, zdjęcia etc.</p>
+  </div>
+</div>

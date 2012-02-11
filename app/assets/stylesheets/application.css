@@ -35,7 +35,8 @@
     margin-right: 10px;
     }
     
-    .btn.next { display: inline; }
-    
+    .nextto { display: inline; }
+
+    .btn.nextto { display: inline; }
+
     .btn.btn-large.btn-primary { margin-bottom: 4px; } /* Even out buttons */
-    

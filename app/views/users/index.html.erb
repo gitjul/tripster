@@ -5,13 +5,15 @@
     <%= link_to('Dodaj podróż', new_trip_path, :class => "btn btn-success btn-large") %>
   </span>
 </ul>
-
 <p id="notice"><%= notice %> </p>
-
+<div id="users">
 <% @users.each do |user| %>
-<li><b><%= link_to "#{user['login']}", user_path(user.id) %></b> 
-<% if current_user && current_user.admin? && current_user!=user %>
-    <%= link_to "Usuń", user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+  <div class="user">
+    <%= image_tag("default_avatar.jpg", :alt=> "Defaultowy avatar", :title=> "Defaultowy avatar", :size => "80x80", :class => "avatar-small") %>
+    <%= link_to "#{user['login']}", user_path(user.id) %>
+    <% if current_user && current_user.admin? && current_user!=user %>
+        <%= link_to "Usuń", user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+    <% end %>
+  </div>
 <% end %>
-</li>
-<% end %>
+</div>
