@@ -5,7 +5,7 @@
   <%= link_to('Dodaj podróż', new_trip_path, :class => "btn btn-success btn-large") %>
   </span>
 </ul>
-
+<% if notice %><p id="notice"><%= notice %></p><% end %>
 <div id='trips'>
   <% @trips.all.each do |trip| %>
   <div id='trip-<%= trip.id %>' class='trip'>
@@ -37,3 +37,4 @@
   <% end %>
 </div>
 <%= paginate @trips %>
+

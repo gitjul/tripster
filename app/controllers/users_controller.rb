@@ -1,6 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  
+
   before_filter :authenticate, :only => [:edit]
   before_filter :admin_required, :only => [:delete]
 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   # GET /users/1
   def show
     @user = User.find(params[:id])
@@ -31,19 +31,23 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
+    unless current_user == @user or current_user.admin?
+      flash[:notice] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
+      redirect_to root_url
+    end
   end
 
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Zapisano zmiany."
       redirect_to user_path(@user.id)
     else
       render :action => 'edit'
-    end 
+    end
   end
-  
+
   # DELETE /users/1
   def destroy
     @user = User.find(params[:id])
@@ -51,7 +55,7 @@ class UsersController < ApplicationController
     flash[:notice] = "Usunięto użytkownika."
     redirect_to users_url
   end
-  
+
   # GET /users/1/edit_avatar
   def edit_avatar
     @user = current_user
@@ -67,3 +71,4 @@ class UsersController < ApplicationController
     end
   end
 end
+

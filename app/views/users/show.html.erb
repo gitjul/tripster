@@ -35,7 +35,7 @@
         <div><%= @user.location %></div>
       <% end %>
       <% unless @user.bio.nil? || @user.bio.empty? %>
-        <div><i>O mnie:<%= simple_format(@user.bio) %></i></div>
+        <div>O mnie:<i><%= simple_format(@user.bio) %></i></div>
       <% end %>
     </div>
     <br />

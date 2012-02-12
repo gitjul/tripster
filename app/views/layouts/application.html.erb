@@ -11,11 +11,11 @@
   html, body {
   background-color: #eee;
   }
-  
+
   body {
   padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
   }
-  
+
   .container > footer p {
   text-align: center; /* center align it with the container */
   color: #BFBFBF;
@@ -49,7 +49,7 @@
           <li class><%= link_to "Zarejestruj się", new_user_path %></li>
           <li class><%= link_to "Zaloguj", new_user_sessions_path %></li>
           <% end %>
-          <% unless current_user.nil? %> 
+          <% unless current_user.nil? %>
           <li class><%= link_to "Witaj, #{current_user['login']}", user_path(current_user.id) %></li>
           <li class><%= link_to "Wyloguj", user_sessions_path, :method => :delete %></li>
           <% end %>
@@ -64,7 +64,8 @@
     </div> <!-- /content -->
     <footer>
         <p>&copy; Barbara Żądło &amp; Julia Jacobs 2012</p>
-    </footer>    
-  </div>  <!-- /container -->  
+    </footer>
+  </div>  <!-- /container -->
 </body>
 </html>
+
