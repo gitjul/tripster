@@ -52,4 +52,18 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  # GET /users/1/edit_avatar
+  def edit_avatar
+    @user = current_user
+  end
+
+  def update_avatar
+    @user = current_user
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Pomyślnie zmieniono avatar."
+      redirect_to user_path(@user.id)
+    else
+      render :action => 'edit_avatar'
+    end
+  end
 end

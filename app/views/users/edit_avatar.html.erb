@@ -1,0 +1,14 @@
+<%= form_for @user, :url => update_avatar_user_path(@user), :html => {:multipart => true} do |f| %>
+  <!-- komunikaty błędów -->
+  <% if @user.errors.any? %>
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %> </li>
+    <% end %>
+  </ul>
+  <% end %>
+  <p>
+    <%= f.file_field :avatar %>
+  </p>
+  <p><%= f.submit('Zapisz', :class => "btn") %></p>
+<% end %>

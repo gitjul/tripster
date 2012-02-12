@@ -8,7 +8,10 @@ Tripster::Application.routes.draw do
   # get "user_sessions/create"
   # get "user_sessions/destroy"
 
-  resources :users, :only => [:new, :create, :edit, :update, :index, :show, :destroy]
+  resources :users, :only => [:new, :create, :edit, :update, :index, :show, :destroy] do
+    get 'edit_avatar', :on => :member
+    put 'update_avatar', :on => :member
+  end
 
   # get "users/new"
   # get "users/create"

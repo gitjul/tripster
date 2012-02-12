@@ -20,9 +20,13 @@
 </div>
 <div class="row">
   <div class="span4 about">
-    <%= image_tag("default_avatar.jpg", :alt=> "Defaultowy avatar", :title=> "Defaultowy avatar", :size => "150x150", :class => "avatar") %>
+    <% if @user.avatar_url.nil? || @user.avatar_url.empty? %>
+      <%= image_tag("default_avatar.jpg", :alt=> "Defaultowy avatar", :title=> "Defaultowy avatar", :size => "150x150", :class => "avatar") %>
+    <% else %>
+      <%= image_tag @user.avatar_url.to_s %>
+    <% end %>
     <% if current_user && current_user==@user %>
-      <div><%= link_to('Zmień obrazek profilowy', '#', :class => "btn btn-small") %></div>
+      <div><%= link_to('Zmień obrazek profilowy', edit_avatar_user_path(@user), :class => "btn btn-small") %></div>
     <% end %>
     <div class="userinfo">
       <% unless @user.fullname.nil? || @user.fullname.empty? %>
@@ -43,7 +47,7 @@
     <div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
     <% end %>
     <% if current_user && current_user.admin? && current_user!=@user %>
-      <%= link_to "Usuń użytkownika", @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+      <%= link_to 'Usuń użytkownika', @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
     <% end %>
     <div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
   </div>
