@@ -20,11 +20,7 @@
 </div>
 <div class="row">
   <div class="span4 about">
-    <% if @user.avatar_url.nil? || @user.avatar_url.empty? %>
-      <%= image_tag("default_avatar.jpg", :alt=> "Defaultowy avatar", :title=> "Defaultowy avatar", :size => "150x150", :class => "avatar") %>
-    <% else %>
-      <%= image_tag @user.avatar_url.to_s %>
-    <% end %>
+    <%= image_tag @user.avatar_url(:thumb).to_s %>
     <% if current_user && current_user==@user %>
       <div><%= link_to('Zmień obrazek profilowy', edit_avatar_user_path(@user), :class => "btn btn-small") %></div>
     <% end %>
@@ -39,7 +35,7 @@
         <div><%= @user.location %></div>
       <% end %>
       <% unless @user.bio.nil? || @user.bio.empty? %>
-        <div><i><O mnie:<%= simple_format(@user.bio) %></i></div>
+        <div><i>O mnie:<%= simple_format(@user.bio) %></i></div>
       <% end %>
     </div>
     <br />
@@ -56,3 +52,4 @@
     <p>Tu będą podróże użytkownika, zdjęcia etc.</p>
   </div>
 </div>
+

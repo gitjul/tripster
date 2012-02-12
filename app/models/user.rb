@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  #attr_accesible :avatar
   attr_protected :admin
   acts_as_authentic do |config|
     config.crypted_password_field = :crypted_password
@@ -13,3 +12,4 @@ class User < ActiveRecord::Base
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
   mount_uploader :avatar, ImageUploader
 end
+
