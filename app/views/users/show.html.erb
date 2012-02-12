@@ -20,7 +20,7 @@
 </div>
 <div class="row">
   <div class="span4 about">
-    <%= image_tag @user.avatar_url(:thumb).to_s %>
+    <%= image_tag(@user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{@user['login']}") %>
     <% if current_user && current_user==@user %>
       <div><%= link_to('Zmień obrazek profilowy', edit_avatar_user_path(@user), :class => "btn btn-small") %></div>
     <% end %>
