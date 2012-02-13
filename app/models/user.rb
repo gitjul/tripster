@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
                     :length => {:minimum => 3, :maximum => 254},
                     :uniqueness => true,
                     :format => {:with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i}
+  validates :bio, :allow_blank => true,
+                  :length => { :maximum => 140}
   mount_uploader :avatar, ImageUploader
 end
 
