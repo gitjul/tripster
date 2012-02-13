@@ -1,66 +1,74 @@
 <% content_for :head do %>
-    <%= javascript_include_tag '//maps.googleapis.com/maps/api/js?sensor=false' %>
-    <%= javascript_tag do %>
-          var markers = [];
-          var map;
+    <% unless @trip.points.empty? %>
+      <%= javascript_include_tag '//maps.googleapis.com/maps/api/js?sensor=false' %>
+      <%= javascript_tag do %>
+            var markers = [];
+            var map;
 
-          function map() {
-            var first = new google.maps.LatLng(<%= @trip.points.first.lat %>, <%= @trip.points.first.lng %>);
-            var mapOptions = {
-              zoom: 13,
-              mapTypeId: google.maps.MapTypeId.ROADMAP,
-              center: first
-            };
-            map = new google.maps.Map(document.getElementById("map"),
-                    mapOptions);
-          <% @trip.points.all.each do |point| %>
-            new google.maps.Marker({
-              map: map,
-              draggable: true,
-              animation: google.maps.Animation.DROP,
-              position: new google.maps.LatLng(<%= point.lat %>, <%= point.lng %>)
-            });
-          <% end %>
-          }
+            function map() {
+              var first = new google.maps.LatLng(<%= @trip.points.first.lat %>, <%= @trip.points.first.lng %>);
+              var mapOptions = {
+                zoom: 13,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: first
+              };
+              map = new google.maps.Map(document.getElementById("map"),
+                      mapOptions);
+            <% @trip.points.all.each do |point| %>
+              new google.maps.Marker({
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                position: new google.maps.LatLng(<%= point.lat %>, <%= point.lng %>)
+              });
+            <% end %>
+            }
+      <% end %>
     <% end %>
 <% end %>
-
-<h1><%= @trip.name %></h1>
-<% if flash[:error] %>
-<div class="alert alert-error">
-  <%= flash[:error] %>
-  <a class="close" href="/">×</a>
-</div>
-<% end %>
-<% if flash[:info] %>
-<div class="alert alert-info">
-  <%= flash[:info] %>
-  <a class="close" href="/">×</a>
-</div>
-<% end %>
-<% if flash[:success] %>
-<div class="alert alert-success">
-  <%= flash[:success] %>
-  <a class="close" href="/">×</a>
-</div>
-<% end %>
-<%= link_to 'Edytuj', edit_trip_path(@trip) if current_user && current_user.admin? %>
-<div class='description'>
-  <%= @trip.description %>
-</div>
-<div id='map' style='width: 99%; height: 200px'>
-  Map
-</div>
-<h3>Punkty</h3>
-<div id='points'>
-  <% @trip.points.all.each do |point| %>
-  <div class='point' id='point-<%= point.id %>'>
-    <div class='name description'>
-      <h4><%= point.name %></h4>
-      <%= point.description %>
-      <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
-    </div>
+<div class="">
+  <h1><%= @trip.name %></h1>
+  <% if flash[:error] %>
+  <div class="alert alert-error">
+    <%= flash[:error] %>
+    <a class="close" href="/">×</a>
   </div>
   <% end %>
+  <% if flash[:info] %>
+  <div class="alert alert-info">
+    <%= flash[:info] %>
+    <a class="close" href="/">×</a>
+  </div>
+  <% end %>
+  <% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+    <a class="close" href="/">×</a>
+  </div>
+  <% end %>
+  <%= link_to 'Edytuj', edit_trip_path(@trip) if current_user && current_user.admin? %>
+  <div class='description'>
+    <%= @trip.description %>
+  </div>
+  <% unless @trip.points.empty? %>
+    <div id='map' style='width: 99%; height: 200px'>
+      Map
+    </div>
+    <h3>Punkty</h3>
+    <div id='points'>
+      <% @trip.points.all.each do |point| %>
+      <div class='point' id=point-<%= point.id %>"">
+        <div class='name description'>
+          <h4><%= point.name %></h4>
+          <%= point.description %>
+          <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Profil autora', user_path(@trip.user.id) %> &middot;
+  <%= link_to 'Wróć do listy podróży', trips_path %>
 </div>
 
