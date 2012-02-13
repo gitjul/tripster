@@ -9,3 +9,4 @@ class Trip < ActiveRecord::Base
 
   attr_accessible :name, :description, :points_attributes
 end
+

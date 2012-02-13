@@ -1,6 +1,6 @@
 # encoding: utf-8
 class TripsController < ApplicationController
-  before_filter :authenticate, :only => [:new]
+  before_filter :authenticate, :only => [:new, :edit, :destroy]
   before_filter :admin_required, :only => [:destroy]
 
   def index
@@ -18,12 +18,11 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(params[:trip])
     @trip.user = current_user
-    respond_to do |format|
-      if @trip.save
-        format.html { redirect_to @trip }
-      else
-        format.html { render :action => 'new' }
-      end
+    if @trip.save
+      flash[:success] = "Podróż została utworzona!"
+      redirect_to @trip
+    else
+      render :action => 'new'
     end
   end
 
@@ -33,18 +32,19 @@ class TripsController < ApplicationController
 
   def update
     @trip = Trip.find(params[:id])
-    respond_to do |format|
-      if @trip.update_attributes(params[:trip])
-        format.html { redirect_to @trip, :notice => "Poprawnie zaaktualizowano podróż ##{@trip.id}" }
-      else
-        format.html { render :action => 'edit' }
-      end
+    if @trip.update_attributes(params[:trip])
+      flash[:success] = "Poprawnie zaaktualizowano podróż."
+      redirect_to @trip
+    else
+        render :action => 'edit'
     end
   end
 
   def destroy
     @trip = Trip.find(params[:id])
     @trip.destroy
-    redirect_to trips_path, :notice => "Poprawnie usunięto podróż ##{@trip.id}"
+    flash[:info] = "Usunięto podróż."
+    redirect_to trips_path
   end
 end
+

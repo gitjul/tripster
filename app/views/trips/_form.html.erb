@@ -58,12 +58,12 @@
     </ul>
     <% end %>
     <div class="field">
-      <%= f.label :name, 'Nazwa' %><br/>
+      <%= f.label :name, 'Nazwa' %>
       <%= f.text_field :name %>
     </div>
     <div class="field">
-      <%= f.label :description, 'Opis' %><br/>
-      <%= f.text_area :description, :style => 'height: 150px' %>
+      <%= f.label :description, 'Opis' %>
+      <%= f.text_area :description, :style => 'height: 150px; width: 350px' %>
     </div>
   </div>
   <div id="map">
@@ -81,3 +81,4 @@
   </div>
   <div style='text-align: center'><%= f.submit 'Zapisz' %></div>
 </div>
+
