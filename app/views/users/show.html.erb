@@ -19,7 +19,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="span4 about">
+  <div class="span3 about">
     <%= image_tag(@user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{@user['login']}") %>
     <% if current_user && current_user==@user %>
       <div><%= link_to('Zmień obrazek profilowy', edit_avatar_user_path(@user), :class => "btn btn-small") %></div>
@@ -47,8 +47,25 @@
     <% end %>
     <div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
   </div>
-  <div class="span8">
-    <p id="notice"><%= notice %></p>
+  <div class="span9">
+  <% if flash[:error] %>
+  <div class="alert alert-error">
+    <%= flash[:error] %>
+    <a class="close" href="<%= user_path(@user) %>">×</a>
+  </div>
+  <% end %>
+  <% if flash[:info] %>
+  <div class="alert alert-info">
+    <%= flash[:info] %>
+    <a class="close" href="<%= user_path(@user) %>">×</a>
+  </div>
+  <% end %>
+  <% if flash[:success] %>
+  <div class="alert alert-success">
+    <%= flash[:success] %>
+    <a class="close" href="<%= user_path(@user) %>">×</a>
+  </div>
+  <% end %>
     <p>Tu będą podróże użytkownika, zdjęcia etc.</p>
   </div>
 </div>

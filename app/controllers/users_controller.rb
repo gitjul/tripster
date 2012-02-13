@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Pomyślnie zarejestrowano konto."
+      flash[:success] = "Pomyślnie zarejestrowano konto."
       redirect_to users_url
     else
       render :action => 'new'
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     unless current_user && (current_user == @user or current_user.admin?)
-      flash[:notice] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
+      flash[:error] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
       redirect_to root_url
     end
   end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Zapisano zmiany."
+      flash[:success] = "Zapisano zmiany."
       redirect_to user_path(@user.id)
     else
       render :action => 'edit'
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-    flash[:notice] = "Usunięto użytkownika."
+    flash[:info] = "Usunięto użytkownika."
     redirect_to users_url
   end
 
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
   def edit_avatar
     @user = User.find(params[:id])
     unless current_user && (current_user == @user or current_user.admin?)
-      flash[:notice] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
+      flash[:error] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
       redirect_to root_url
     end
   end
@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   def update_avatar
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Pomyślnie zmieniono avatar."
+      flash[:info] = "Pomyślnie zmieniono awatar."
       redirect_to user_path(@user.id)
     else
       render :action => 'edit_avatar'
