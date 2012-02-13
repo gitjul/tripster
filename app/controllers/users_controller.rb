@@ -1,7 +1,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
 
-  before_filter :authenticate, :only => [:edit]
+  before_filter :authenticate, :only => [:edit, :edit_avatar]
   before_filter :admin_required, :only => [:delete]
 
   # GET /users
@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
-    unless current_user == @user or current_user.admin?
+    unless current_user && (current_user == @user or current_user.admin?)
       flash[:notice] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
       redirect_to root_url
     end
@@ -58,11 +58,15 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit_avatar
   def edit_avatar
-    @user = current_user
+    @user = User.find(params[:id])
+    unless current_user && (current_user == @user or current_user.admin?)
+      flash[:notice] = "Próbujesz wykonać niedozwoloną akcję. Nieładnie."
+      redirect_to root_url
+    end
   end
 
   def update_avatar
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:notice] = "Pomyślnie zmieniono avatar."
       redirect_to user_path(@user.id)

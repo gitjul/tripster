@@ -10,7 +10,7 @@
 <% @users.each do |user| %>
   <div class="user row">
     <div class="span2 avatars">
-    <%= image_tag(user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{user['login']}") %>
+    <%= link_to image_tag(user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{user['login']}"), user_path(user.id) %>
     </div>
     <div class="span8">
       <div class="about pull-left">
