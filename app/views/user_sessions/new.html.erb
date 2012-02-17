@@ -1,18 +1,17 @@
-<div class="row">
-<div class="span6 offset3">
-<h2>Logowanie</h2>
-<%= form_for @user_session, :html => {:class => "well"} do |f| %>
-  <!-- komunikaty błędów -->
-  <% if @user_session.errors.any? %>
-  <ul>
-  <% @user_session.errors.full_messages.each do |msg| %>
-  <li><%= msg %> </li>
+<div id="smallform" class="center login">
+  <h2>Logowanie</h2>
+  <%= form_for @user_session, :html => {:class => "well spaced"} do |f| %>
+    <!-- komunikaty błędów -->
+    <% if @user_session.errors.any? %>
+    <ul>
+    <% @user_session.errors.full_messages.each do |msg| %>
+    <li><%= msg %> </li>
+    <% end %>
+    </ul>
+    <% end %>
+    <%= f.text_field(:login, :class => "input-small", :placeholder => "Login...") %>
+    <%= f.password_field(:password, :class => "input-small", :placeholder => "Hasło...") %>
+    <%= f.submit("Zaloguj!", :class => "btn btn-success") %>
   <% end %>
-  </ul>
-  <% end %>
-  <%= f.text_field(:login, :class => "input-small", :placeholder => "Login") %>
-  <%= f.password_field(:password, :class => "input-small", :placeholder => "Hasło") %>
-  <%= f.submit("Zaloguj!", :class => "btn btn-primary") %>
-<% end %>
 </div>
-</div>
+

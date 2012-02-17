@@ -68,7 +68,7 @@ class UsersController < ApplicationController
   def update_avatar
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      flash[:info] = "Pomyślnie zmieniono awatar."
+      flash[:success] = "Pomyślnie zmieniono awatar."
       redirect_to user_path(@user.id)
     else
       render :action => 'edit_avatar'

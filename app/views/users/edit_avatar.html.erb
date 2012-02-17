@@ -1,16 +1,19 @@
-<h2>Twój awatar</h2>
-<%= form_for @user, :url => update_avatar_user_path(@user), :html => {:multipart => true} do |f| %>
-  <!-- komunikaty błędów -->
-  <% if @user.errors.any? %>
-  <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-    <li><%= msg %> </li>
+<div id="smallform" class="center">
+  <h2>Twój awatar</h2>
+  <%= form_for @user, :url => update_avatar_user_path(@user), :html => {:multipart => true} do |f| %>
+    <!-- komunikaty błędów -->
+    <% if @user.errors.any? %>
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %> </li>
+      <% end %>
+    </ul>
     <% end %>
-  </ul>
+      <div class="spaced well avatar"><%= image_tag(@user.avatar_url(:thumb)) if @user.avatar? %></div>
+      <p><%= f.file_field :avatar %></p>
+      <%= f.hidden_field :avatar_cache %>
+    <p><%= f.submit('Zapisz', :class => "btn") %></p>
   <% end %>
-  <%= image_tag(@user.avatar_url(:thumb)) if @user.avatar? %>
-  <p><%= f.file_field :avatar %></p>
-  <%= f.hidden_field :avatar_cache %>
-  <p><%= f.submit('Zapisz', :class => "btn") %></p>
-<% end %>
+
+</div>
 
