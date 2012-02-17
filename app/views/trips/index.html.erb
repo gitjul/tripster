@@ -23,23 +23,21 @@
   <a class="close" href="/">×</a>
 </div>
 <% end %>
-<div id='trips'>
+<div id="trips">
   <% @trips.all.each do |trip| %>
-  <div id='trip-<%= trip.id %>' class='trip'>
-    <div class='map'>
+  <div id="trip-<%= trip.id %>" class="trip">
+    <div class="map">
       <% unless trip.points.empty? %>
         <%= map_tag trip.points.first.lat, trip.points.first.lng, :size => '400x200' %>
       <% end %>
     </div>
-    <div class='details'>
+    <div class="details">
         <h3><%= trip.name %></h3>
-        <div class='user'>
-          <%= link_to trip.user.login, trip.user %>
-        </div>
-        <div class='description'>
+        <div><%= link_to trip.user.login, trip.user %></div>
+        <div class="description"">
           <%= trip.description %>
         </div>
-        <div class='links'>
+        <div class="links">
           <%= link_to 'Więcej', trip %>
           <% if current_user && current_user.admin? %>
             &middot;
@@ -49,7 +47,7 @@
           <% end %>
         </div>
       </div>
-      <div class='next'></div>
+      <div class="next"></div>
   </div>
   <% end %>
 </div>

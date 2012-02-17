@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.description { padding: 5px 0 10px 0; }
+
+#wrapper {
+  width: 95%;
+  margin: auto;
+}
+
 #points {
     width: 650px;
 
@@ -24,7 +31,7 @@
 #trips {
     width: 90%;
     margin: 0 auto;
-    
+
     .trip {
         margin-top: 32px;
         .map {
@@ -42,6 +49,7 @@
 }
 
 #trip-new {
+    margin-top: 10px;
     #trip-form {
         float: left;
         width: 450px;
@@ -52,3 +60,4 @@
         height: 220px;
     }
 }
+

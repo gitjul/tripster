@@ -26,8 +26,7 @@
       <% end %>
     <% end %>
 <% end %>
-<div class="">
-  <h1><%= @trip.name %></h1>
+<div id="wrapper">
   <% if flash[:error] %>
   <div class="alert alert-error">
     <%= flash[:error] %>
@@ -46,29 +45,34 @@
     <a class="close" href="/">×</a>
   </div>
   <% end %>
-  <%= link_to 'Edytuj', edit_trip_path(@trip) if current_user && current_user.admin? %>
-  <div class='description'>
+  <% if current_user && (current_user.admin? || current_user == @trip.user) %>
+  <span class="pull-right">
+    <%= link_to image_tag("edit.svg", :size => "32x32", :title => "Edytuj podróż"), edit_trip_path(@trip)%>
+  </span>
+  <% end %>
+  <h1><%= @trip.name %></h1>
+  <h3>autor: <%= link_to @trip.user.login, @trip.user %></h3>
+  <div class="description">
     <%= @trip.description %>
   </div>
   <% unless @trip.points.empty? %>
-    <div id='map' style='width: 99%; height: 200px'>
+    <div id="map" style="width: 99%; height: 200px">
       Map
     </div>
-    <h3>Punkty</h3>
-    <div id='points'>
+    <br />
+    <h3>Punkty podróży</h3>
+    <div id="points">
       <% @trip.points.all.each do |point| %>
-      <div class='point' id=point-<%= point.id %>"">
-        <div class='name description'>
-          <h4><%= point.name %></h4>
-          <%= point.description %>
+      <div class="point" id="point-<%= point.id %>">
+        <div class="description">
+          <h4 class="nextto"><%= point.name %></h4>
           <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
+          <div class="description"><%= point.description %></div>
         </div>
       </div>
       <% end %>
     </div>
   <% end %>
-
-  <%= link_to 'Profil autora', user_path(@trip.user.id) %> &middot;
   <%= link_to 'Wróć do listy podróży', trips_path %>
 </div>
 

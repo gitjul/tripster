@@ -1,5 +1,4 @@
-<h1>Edytuj podróż <%= link_to @trip.name, @trip %></h1>
-
+<h1><%= link_to @trip.name, @trip %> (edycja)</h1>
 <%= form_for @trip do |f| %>
     <%= render :partial => "trips/form", :locals => { :f => f } %>
 <% end %>

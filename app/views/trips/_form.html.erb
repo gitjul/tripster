@@ -69,16 +69,16 @@
   <div id="map">
     map
   </div>
-  <div class='clear'></div>
+  <div class="clear"></div>
   <h2>Punkty</h2>
-  <div id='points'>
+  <div id="points">
     <% f.object.points.each_with_index do |point, index| %>
         <%= render :partial => 'trips/point', :locals => { :f => f, :object => point, :index => index } %>
     <% end %>
   </div>
-  <div id='point-new'>
+  <div id="point-new">
     <%= link_to_new_point 'Dodaj punkt', f %>
   </div>
-  <div style='text-align: center'><%= f.submit 'Zapisz' %></div>
+  <div style="text-align: center"><%= f.submit 'Zapisz' %></div>
 </div>
 
