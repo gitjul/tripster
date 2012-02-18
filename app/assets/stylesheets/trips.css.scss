@@ -2,7 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.description { padding: 5px 0 10px 0; }
+.description {
+  padding: 5px 0 10px 0;
+}
+
+.details > .description {
+  min-height: 125px;
+}
 
 #wrapper {
   width: 95%;
@@ -40,6 +46,7 @@
         }
         .details {
             width: 40%;
+            min-height: 200px;
             float: left;
         }
     }

@@ -29,16 +29,22 @@
     <div class="map">
       <% unless trip.points.empty? %>
         <%= map_tag trip.points.first.lat, trip.points.first.lng, :size => '400x200' %>
+      <% else %>
+        <% unless current_user && current_user == trip.user %>
+        <%= image_tag("400x200.jpg", :alt => "Nie dodano punktów podróży", :title => "Nie dodano punktów podróży") %>
+        <% else %>
+        <%= link_to image_tag("400x200.jpg", :alt => "Nie dodano punktów podróży", :title => "Nie dodano punktów podróży"), edit_trip_path(trip) %>
+        <% end %>
       <% end %>
     </div>
     <div class="details">
         <h3><%= trip.name %></h3>
         <div><%= link_to trip.user.login, trip.user %></div>
         <div class="description"">
-          <%= trip.description %>
+          <%= truncate(trip.description, :length => 358, :omission => '...') %>
         </div>
         <div class="links">
-          <%= link_to 'Więcej', trip %>
+          <i><%= link_to 'Więcej...', trip %></i>
           <% if current_user && current_user.admin? %>
             &middot;
             <%= link_to 'Edytuj', edit_trip_path(trip) %>
