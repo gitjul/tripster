@@ -54,7 +54,7 @@
   <h1><%= @trip.name %></h1>
   <h3>autor: <%= link_to @trip.user.login, @trip.user %></h3>
   <div class="description">
-    <%= @trip.description %>
+    <%= simple_format(@trip.description) %>
   </div>
   <% unless @trip.points.empty? %>
     <div id="map" style="width: 99%; height: 200px">
@@ -68,7 +68,7 @@
         <div class="description">
           <h4 class="nextto"><%= point.name %></h4>
           <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
-          <div class="description"><%= point.description %></div>
+          <div class="description"><%= simple_format(point.description) %></div>
         </div>
       </div>
       <% end %>

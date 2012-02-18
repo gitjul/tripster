@@ -19,14 +19,14 @@
   </div>
 </div>
 <div class="row">
-  <div class="span3 about">
+  <div class="span3">
     <%= image_tag(@user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{@user['login']}") %>
     <% if current_user && current_user==@user %>
       <div><%= link_to('Zmień obrazek profilowy', edit_avatar_user_path(@user), :class => "btn btn-small") %></div>
     <% end %>
     <div class="userinfo">
       <% unless @user.fullname.nil? || @user.fullname.empty? %>
-        <div><strong><%= @user.fullname %></strong></div>
+        <div><h4><%= @user.fullname %></h4></div>
       <% end %>
       <% unless @user.email.nil? || @user.email.empty? %>
         <div><%= @user.email %></div>
@@ -35,7 +35,7 @@
         <div><%= @user.location %></div>
       <% end %>
       <% unless @user.bio.nil? || @user.bio.empty? %>
-        <div>O mnie:<i><%= simple_format(@user.bio) %></i></div>
+        <div><i><%= simple_format(@user.bio) %></i></div>
       <% end %>
     </div>
     <br />

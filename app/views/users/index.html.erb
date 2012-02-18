@@ -24,34 +24,28 @@
 </div>
 <% end %>
 <div id="users">
-<% @users.each do |user| %>
   <div class="user row">
-    <div class="span2 avatars">
-    <%= link_to image_tag(user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{user['login']}", :alt => "Awatar użytkownika #{user['login']}"), user_path(user.id) %>
-    </div>
-    <div class="span8">
-      <div class="about pull-left">
-        <h2 class="nextto"><%= link_to "#{user['login']}", user_path(user.id) %>
+  <% @users.each_with_index do |user, i| %>
+    <div class="span4">
+      <div class="span2">
+      <%= link_to image_tag(user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{user['login']}", :alt => "Awatar użytkownika #{user['login']}"), user_path(user.id) %>
+      </div>
+      <div class="span2 about">
+        <h3 class="nextto"><%= link_to "#{user['login']}", user_path(user.id) %></h3>
         <% unless user.fullname.nil? || user.fullname.empty? %>
-          &nbsp;<small><%= user.fullname %></small>
-        <% end %></h2>
-        <% unless user.location.nil? || user.location.empty? %>
-          <div><%= user.location %></div>
+          <div><h4><%= user.fullname %></h4></div>
         <% end %>
-        <% unless user.bio.nil? || user.bio.empty? %>
-          <div><i><%= simple_format(user.bio) %></i></div>
+        <% unless user.location.nil? || user.location.empty? %>
+          <div class="loc"><%= user.location %></div>
         <% end %>
       </div>
-      <span class="pull-right">
-      <% if current_user && (current_user==user || current_user.admin?) %>
-        <%= link_to image_tag("edit.png", :size => "32x32", :title => "Edytuj profil", :alt => "Edytuj profil"), edit_user_path(user) %>
-      <% end %>
-      <% if current_user && current_user.admin? && current_user!=user %>
-        <%= link_to image_tag("delete.svg", :size => "32x32", :title => "Usuń użytkownika", :alt => "Usuń użytkownika"), user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
-      <% end %>
-      </span>
     </div>
+    <% if (i+1)%3 == 0 %>
   </div>
-<% end %>
+  <div class="user row">
+    <% end %>
+  <% end %>
+  </div>
 </div>
+<%= paginate @users %>
 

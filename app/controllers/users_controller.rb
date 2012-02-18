@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.order('created_at asc').page(params[:page]).per(12)
   end
 
   # GET /users/new
