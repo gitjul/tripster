@@ -37,6 +37,6 @@ end
 gem 'therubyracer'
 gem 'authlogic'
 gem "strip_attributes", "~> 1.0"
-gem 'kaminari', '0.12.4'
+gem 'kaminari'
 gem 'carrierwave'
 gem 'rmagick'
