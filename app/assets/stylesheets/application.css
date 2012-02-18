@@ -39,7 +39,7 @@
 
     .btn.nextto { display: inline; }
 
-    .btn.btn-large.btn-primary { margin-bottom: 4px; } /* Even out buttons */
+    .btn.btn-large.btn-primary { margin-bottom: 5px; } /* Even out buttons */
 
     #smallform {
       width: 35%;

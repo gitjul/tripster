@@ -40,8 +40,8 @@
     <div class="details">
         <h3><%= trip.name %></h3>
         <div><%= link_to trip.user.login, trip.user %></div>
-        <div class="description"">
-          <%= truncate(trip.description, :length => 358, :omission => '...') %>
+        <div class="description">
+          <%= truncate(trip.description, :length => 395, :omission => '...') %>
         </div>
         <div class="links">
           <i><%= link_to 'Więcej...', trip %></i>

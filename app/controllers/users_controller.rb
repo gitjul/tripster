@@ -27,6 +27,7 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
     @user = User.find(params[:id])
+    @trips = @user.trips.order('created_at desc').page(params[:page]).per(5)
   end
 
   # GET /users/1/edit

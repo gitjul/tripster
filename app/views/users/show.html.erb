@@ -39,34 +39,67 @@
       <% end %>
     </div>
     <br />
-    <% if current_user && current_user==@user %>
-    <div><%= link_to 'Edytuj', edit_user_path(@user) %></div>
+    <% if current_user && (current_user==@user || current_user.admin?) %>
+    <%= link_to 'Edytuj profil', edit_user_path(@user) %>
     <% end %>
     <% if current_user && current_user.admin? && current_user!=@user %>
-      <%= link_to 'Usuń użytkownika', @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
+      &middot;&nbsp;<%= link_to 'Usuń użytkownika', @user, :confirm => "Na pewno chcesz usunąć użytkownika?", :method => :delete %>
     <% end %>
     <div><%= link_to 'Wróć do listy użytkowników', users_path %></div>
   </div>
   <div class="span9">
-  <% if flash[:error] %>
-  <div class="alert alert-error">
-    <%= flash[:error] %>
-    <a class="close" href="<%= user_path(@user) %>">×</a>
-  </div>
-  <% end %>
-  <% if flash[:info] %>
-  <div class="alert alert-info">
-    <%= flash[:info] %>
-    <a class="close" href="<%= user_path(@user) %>">×</a>
-  </div>
-  <% end %>
-  <% if flash[:success] %>
-  <div class="alert alert-success">
-    <%= flash[:success] %>
-    <a class="close" href="<%= user_path(@user) %>">×</a>
-  </div>
-  <% end %>
-    <p>Tu będą podróże użytkownika, zdjęcia etc.</p>
+    <% if flash[:error] %>
+    <div class="alert alert-error">
+      <%= flash[:error] %>
+      <a class="close" href="<%= user_path(@user) %>">×</a>
+    </div>
+    <% end %>
+    <% if flash[:info] %>
+    <div class="alert alert-info">
+      <%= flash[:info] %>
+      <a class="close" href="<%= user_path(@user) %>">×</a>
+    </div>
+    <% end %>
+    <% if flash[:success] %>
+    <div class="alert alert-success">
+      <%= flash[:success] %>
+      <a class="close" href="<%= user_path(@user) %>">×</a>
+    </div>
+    <% end %>
+    <% @trips.each do |trip| %>
+    <div id="trip-<%= trip.id %>" class="row trip-small">
+      <div class="span4 map">
+        <% unless trip.points.empty? %>
+          <%= map_tag trip.points.first.lat, trip.points.first.lng, :size => '400x200' %>
+        <% else %>
+          <% unless current_user && current_user == trip.user %>
+          <%= image_tag("400x200.jpg", :alt => "Nie dodano punktów podróży", :title => "Nie dodano punktów podróży") %>
+          <% else %>
+          <%= link_to image_tag("400x200.jpg", :alt => "Nie dodano punktów podróży", :title => "Nie dodano punktów podróży"), edit_trip_path(trip) %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="span5 details">
+        <h3><%= trip.name %></h3>
+        <div><%= link_to trip.user.login, trip.user %></div>
+        <div class="description-small">
+          <%= truncate(trip.description, :length => 235, :omission => '...') %>
+        </div>
+        <div class="links">
+          <i><%= link_to 'Więcej...', trip %></i>
+          <% if current_user && current_user.admin? %>
+            &middot;
+            <%= link_to 'Edytuj', edit_trip_path(trip) %>
+            &middot;
+            <%= link_to 'Usuń', trip, :method => :delete, :confirm => 'Na pewno chcesz usunąć?' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <% end %>
+</div>
+<%= paginate @trips %>
+
   </div>
 </div>
 

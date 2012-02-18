@@ -13,5 +13,6 @@ class User < ActiveRecord::Base
   validates :bio, :allow_blank => true,
                   :length => { :maximum => 140}
   mount_uploader :avatar, ImageUploader
+  has_many :trips
 end
 
