@@ -10,6 +10,10 @@
   min-height: 125px;
 }
 
+.point > .description {
+  padding-bottom: 0;
+}
+
 .details > .description-small {
   min-height: 92px;
 }
@@ -31,12 +35,9 @@
 
     .point {
         border-bottom: 1px solid #eaeaea;
-        padding: 4px;
+        padding-bottom: 8px;
+        margin-bottom: 8px;
         clear: both;
-    }
-
-    .field {
-        padding: 10px;
     }
 }
 

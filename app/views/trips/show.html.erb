@@ -65,15 +65,15 @@
     <div id="points">
       <% @trip.points.all.each do |point| %>
       <div class="point" id="point-<%= point.id %>">
-        <div class="description">
-          <h4 class="nextto"><%= point.name %></h4>
-          <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
-          <div class="description"><%= simple_format(point.description) %></div>
-        </div>
+        <h4 class="nextto"><%= point.name %></h4>
+        <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
+        <% unless point.description.empty? %>
+        <div class="description"><%= simple_format(point.description) %></div>
+        <% end %>
       </div>
       <% end %>
     </div>
   <% end %>
-  <%= link_to 'Wróć do listy podróży', trips_path %>
+  <%= link_to 'Wszystkie podróże', trips_path %>&nbsp;&middot;&nbsp;<%= link_to 'Profil autora', @trip.user %>
 </div>
 
