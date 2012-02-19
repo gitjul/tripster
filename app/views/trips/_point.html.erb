@@ -15,9 +15,8 @@
       <%= fields.check_box :_destroy %>
       <%= fields.label :_destroy, 'Usuń punkt' %>
       lub
-      <%= link_to_function 'Pokaż na mapie', %{
-            addMarker("trip_points_attributes_#{index}", #{object.lat}, #{object.lng});
-        } %>
+      <%= link_to_function 'Pokaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{object.lat}, #{object.lng}))
+        } %> <!-- Wcześniej była tu funkcja (ale w ogóle nie działała): addMarker("trip_points_attributes_#{index}", #{object.lat}, #{object.lng}); teraz jest to, ale nie wyświetla punktu, tylko centruje na niego mapę. -->
     </div>
     <% end %>
 
