@@ -35,7 +35,7 @@
 
   .navbar .nav > li > a {
     padding: 15px 10px 11px;
-    color: #E8E8E8;
+    color: #F2F2F2;
   }
   .navbar .nav > li > a:hover {
     color: #FAE098;
@@ -73,7 +73,7 @@
           <li class><%= link_to "Zaloguj", new_user_sessions_path %></li>
           <% end %>
           <% unless current_user.nil? %>
-          <li class="loggedas">Zalogowany jako</li>
+          <li class="loggedas">Zalogowany/a jako</li>
           <li class><%= link_to "#{current_user['login']}", user_path(current_user.id), :class => 'usr' %></li>
           <li class><%= link_to "Wyloguj", user_sessions_path, :method => :delete, :class => 'logout' %></li>
           <% end %>

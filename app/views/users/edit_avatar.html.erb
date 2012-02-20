@@ -9,7 +9,12 @@
       <% end %>
     </ul>
     <% end %>
-      <div class="spaced well avatar"><%= image_tag(@user.avatar_url(:thumb)) if @user.avatar? %></div>
+      <div class="spaced well avatar">
+      <%= image_tag(@user.avatar_url(:thumb)) if @user.avatar?%>
+      <% unless @user.avatar? %>
+      Nie wybrałeś jeszcze awatara, używasz domyślnego.
+      <% end %>
+      </div>
       <p><%= f.file_field :avatar %></p>
       <%= f.hidden_field :avatar_cache %>
     <p><%= f.submit('Zapisz', :class => "btn") %></p>
