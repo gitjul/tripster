@@ -3,7 +3,7 @@
   <%= form_for @user, :url => update_avatar_user_path(@user), :html => {:multipart => true} do |f| %>
     <!-- komunikaty błędów -->
     <% if @user.errors.any? %>
-    <ul>
+    <ul class="errors">
       <% @user.errors.full_messages.each do |msg| %>
       <li><%= msg %> </li>
       <% end %>

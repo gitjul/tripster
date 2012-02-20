@@ -4,7 +4,7 @@
     <h2>Dołącz do nas!</h2>
     <!-- komunikaty błędów -->
     <% if @user.errors.any? %>
-    <ul>
+    <ul class=errors>
     <% @user.errors.full_messages.each do |msg| %>
     <li><%= msg %> </li>
     <% end %>
@@ -35,12 +35,13 @@
     <%= f.text_field :email, {:class => "input-xlarge"} %>
     <p class="help-block">Pole opcjonalne. Możesz uzupełnić je później.</p>
     </div>
-    
+
     <div class="form-actions">
     <%= f.submit("Stwórz konto!", :class => "btn btn-large btn-primary") %>
     </div>
-    
-    
+
+
   <% end %>
 </div>
 </div>
+

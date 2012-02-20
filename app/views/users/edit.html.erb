@@ -4,7 +4,7 @@
   <%= form_for @user do |f| %>
   <!-- komunikaty błędów -->
   <% if @user.errors.any? %>
-  <ul>
+  <ul class="errors">
   <% @user.errors.full_messages.each do |msg| %>
   <li><%= msg %> </li>
   <% end %>
@@ -38,8 +38,9 @@
   </div>
   <div class="actions"><%= f.submit('Zapisz zmiany', :class => "btn btn-large btn-primary" ) %>
   <%= link_to('Powrót', @user, :class => "btn btn-large nextto" ) %></div>
-  
+
   <% end %>
 </fieldset>
 </div>
 </div>
+

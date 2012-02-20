@@ -73,3 +73,10 @@ a:hover { text-decoration: none; }
 
 .center { text-align: center; }
 
+ul.errors {
+  text-align: left;
+  color: #B94A48;
+  list-style: none;
+  margin-left: 0;
+}
+

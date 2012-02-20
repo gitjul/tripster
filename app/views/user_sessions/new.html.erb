@@ -1,14 +1,15 @@
 <div id="smallform" class="center login">
   <h1>Logowanie</h1>
+  <!-- komunikaty błędów -->
+  <% if @user_session.errors.any? %>
+  <br />
+  <ul class="errors">
+  <% @user_session.errors.full_messages.each do |msg| %>
+  <li><%= msg %> </li>
+  <% end %>
+  </ul>
+  <% end %>
   <%= form_for @user_session, :html => {:class => "well spaced"} do |f| %>
-    <!-- komunikaty błędów -->
-    <% if @user_session.errors.any? %>
-    <ul>
-    <% @user_session.errors.full_messages.each do |msg| %>
-    <li><%= msg %> </li>
-    <% end %>
-    </ul>
-    <% end %>
     <%= f.text_field(:login, :class => "input-small", :placeholder => "Login...") %>
     <%= f.password_field(:password, :class => "input-small", :placeholder => "Hasło...") %>
     <%= f.submit("Zaloguj!", :class => "btn btn-success") %>
