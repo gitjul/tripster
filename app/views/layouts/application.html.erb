@@ -13,13 +13,32 @@
   }
 
   body {
-  padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+  padding-top: 50px; /* 50px to make the container go all the way to the bottom of the topbar */
   }
 
   .container > footer p {
   text-align: center; /* center align it with the container */
-  color: #BFBFBF;
+  color: #D4D4D4;
   padding-top: 15px;
+  }
+
+  .navbar-inner > .container {
+    width: 960px;
+  }
+
+  .navbar .brand {
+    font-weight: bold;
+    font-size: 28px;
+    padding-top: 10px;
+    padding-left: 22px;
+  }
+
+  .navbar .nav > li > a {
+    padding: 15px 10px 11px;
+    color: #E8E8E8;
+  }
+  .navbar .nav > li > a:hover {
+    color: #9FE1FC;
   }
 
   /* The white background content wrapper */
@@ -43,7 +62,10 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-        <a class="brand" href="/">tripster</a>
+        <%= image_tag('globe.png', :title => 'tripster logo', :alt => 'tripster logo', :size =>'32x32', :class => 'pull-left logo') %>
+        <a class="brand" href="/">
+          tripster
+        </a>
         <div class="pull-right">
           <ul class="nav">
           <% unless current_user %>
@@ -51,8 +73,9 @@
           <li class><%= link_to "Zaloguj", new_user_sessions_path %></li>
           <% end %>
           <% unless current_user.nil? %>
-          <li class><%= link_to "Witaj, #{current_user['login']}", user_path(current_user.id) %></li>
-          <li class><%= link_to "Wyloguj", user_sessions_path, :method => :delete %></li>
+          <li class="loggedas">Zalogowany jako</li>
+          <li class><%= link_to "#{current_user['login']}", user_path(current_user.id), :class => 'usr' %></li>
+          <li class><%= link_to "Wyloguj", user_sessions_path, :method => :delete, :class => 'logout' %></li>
           <% end %>
           </ul>
         </div>

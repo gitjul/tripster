@@ -18,8 +18,12 @@
   margin-top: 8px;
 }
 
-.about {
-  width: 120px;
+.span4 > .span2 {
+  margin-left: 8px;
+}
+
+.span4 > .span2.about {
+  margin-left: 10px;
 }
 
 #users {

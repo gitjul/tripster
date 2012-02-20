@@ -5,47 +5,71 @@
  *= require_self
  *= require_tree .
 */
-    .links {
-        text-align: right;
-    }
 
-    .clear {
-        clear: both;
-    }
+.logo { margin-top: 9px; }
 
-    .field { margin-bottom: 10px; }
+.loggedas {
+  color: #C5C5C5;
+  margin-top: 16px;
+}
 
-    .field > input { margin-bottom: 0px; }
+.navbar .nav > li > a.usr {
+  color: #0088CC;
+  font-weight: bold;
+  padding-left: 5px;
+  padding-right: 0;
+  font-size: 1em;
+}
 
-    .field > p.help-block { margin-top: 0px; }
+.navbar .nav > li > a.usr:hover {
+  color: white;
+}
 
-    .field > label {
-      margin-bottom: 0px;
-      font-weight: bold;
-    }
+.navbar .nav > li > a.logout {
+  padding-right: 0;
+}
 
-    a:hover { text-decoration: none; }
+.links {
+    text-align: right;
+}
 
-    .nav-pills.big > li > a {
-      font-size: 20px;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      padding-left: 16px;
-      padding-right: 16px;
-      margin-right: 10px;
-    }
+.clear {
+    clear: both;
+}
 
-    .nextto { display: inline; }
+.field { margin-bottom: 10px; }
 
-    .btn.nextto { display: inline; }
+.field > input { margin-bottom: 0px; }
 
-    .btn.btn-large.btn-primary { margin-bottom: 5px; } /* Even out buttons */
+.field > p.help-block { margin-top: 0px; }
 
-    #smallform {
-      width: 35%;
-      margin-left: auto;
-      margin-right: auto
-    }
+.field > label {
+  margin-bottom: 0px;
+  font-weight: bold;
+}
 
-    .center { text-align: center; }
+a:hover { text-decoration: none; }
+
+.nav-pills.big > li > a {
+  font-size: 20px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-right: 10px;
+}
+
+.nextto { display: inline; }
+
+.btn.nextto { display: inline; }
+
+.btn.btn-large.btn-primary { margin-bottom: 5px; } /* Even out buttons */
+
+#smallform {
+  width: 35%;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.center { text-align: center; }
 
