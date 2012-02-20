@@ -25,10 +25,6 @@
   color: white;
 }
 
-.navbar .nav > li > a.logout {
-  padding-right: 0;
-}
-
 .links {
     text-align: right;
 }
