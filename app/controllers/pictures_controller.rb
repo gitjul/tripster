@@ -1,83 +1,88 @@
+# encoding: utf-8
 class PicturesController < ApplicationController
-  # GET /pictures
-  # GET /pictures.json
+
+  before_filter :authenticate, :only => [:new, :edit]
+
+  # GET trips/1/pictures
   def index
-    @pictures = Picture.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pictures }
-    end
+    @imageable = find_imageable
+    @pictures = @imageable.pictures
   end
 
-  # GET /pictures/1
-  # GET /pictures/1.json
+  # GET trips/1/pictures/1
   def show
-    @picture = Picture.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @picture }
-    end
+    @imageable = find_imageable
+    @picture = @imageable.pictures.find(params[:id])
   end
 
-  # GET /pictures/new
-  # GET /pictures/new.json
+  # GET trips/1/pictures/new
   def new
-    @picture = Picture.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @picture }
-    end
+    @imageable = find_imageable
+    @picture = @imageable.pictures.new
   end
 
-  # GET /pictures/1/edit
-  def edit
-    @picture = Picture.find(params[:id])
-  end
-
-  # POST /pictures
-  # POST /pictures.json
+  # POST /trips/1/pictures
   def create
-    @picture = Picture.new(params[:picture])
+    @imageable = find_imageable
+    @picture = @imageable.pictures.build(params[:picture])
 
-    respond_to do |format|
-      if @picture.save
-        format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render json: @picture, status: :created, location: @picture }
+    if @picture.save
+      flash[:success] = 'Pomyślnie dodano zdjęcie.'
+      if @picture.imageable_type == 'Point'
+        redirect_to @picture.imageable.trip
       else
-        format.html { render action: "new" }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        redirect_to @picture.imageable
       end
+    else
+      render :action => 'new'
     end
   end
 
-  # PUT /pictures/1
-  # PUT /pictures/1.json
+  # GET trips/1/pictures/1/edit
+  def edit
+    @imageable = find_imageable
+    @picture = Picture.find(params[:id])
+  end
+
+  # PUT trips/1/pictures/1
   def update
-    @picture = Picture.find(params[:id])
+    @imageable = find_imageable
+    @picture = @imageable.pictures.find(params[:id])
 
-    respond_to do |format|
-      if @picture.update_attributes(params[:picture])
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { head :ok }
+    if @picture.update_attributes(params[:picture])
+      flash[:success] = 'Pomyślnie nadpisano zdjęcie.'
+      if @picture.imageable_type == 'Point'
+        redirect_to @picture.imageable.trip
       else
-        format.html { render action: "edit" }
-        format.json { render json: @picture.errors, status: :unprocessable_entity }
+        redirect_to @picture.imageable
       end
+    else
+      render :action => 'edit'
     end
   end
 
-  # DELETE /pictures/1
-  # DELETE /pictures/1.json
+  # DELETE /trips/1/pictures/1
   def destroy
-    @picture = Picture.find(params[:id])
+    @imageable = find_imageable
+    @picture = @imageable.pictures.find(params[:id])
     @picture.destroy
-
-    respond_to do |format|
-      format.html { redirect_to pictures_url }
-      format.json { head :ok }
+    flash[:info] = 'Usunięto zdjęcie.'
+    if @picture.imageable_type == 'Point'
+        redirect_to @picture.imageable.trip
+      else
+        redirect_to @picture.imageable
     end
+  end
+
+  private
+
+  def find_imageable
+    params.each do |name, id|
+      if name =~ /(.+)_id$/
+        return $1.classify.constantize.find(id)
+      end
+    end
+    nil
   end
 end
+

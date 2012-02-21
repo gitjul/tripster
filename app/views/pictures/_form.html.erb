@@ -1,29 +1,18 @@
-<%= form_for(@picture) do |f| %>
+<%= form_for [@imageable, @picture], :html => {:multipart => true} do |f| %>
   <% if @picture.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
-
-      <ul>
+    <ul id="errors">
       <% @picture.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
   <% end %>
 
-  <div class="field">
-    <%= f.label :image %><br />
-    <%= f.text_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label :imageable_id %><br />
-    <%= f.number_field :imageable_id %>
-  </div>
-  <div class="field">
-    <%= f.label :imageable_type %><br />
-    <%= f.text_field :imageable_type %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% if @picture.image? %>
+      <div class="spaced well">
+        <%= image_tag(@picture.image_url(:thumb)) %>
+      </div>
+    <% end %>
+    <p><%= f.file_field :image %></p> <%= f.hidden_field :image_cache %>
+    <p><%= f.submit('Zapisz', :class => "btn") %></p>
 <% end %>
+

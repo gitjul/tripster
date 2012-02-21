@@ -57,18 +57,59 @@
     <%= simple_format(@trip.description) %>
   </div>
   <% unless @trip.points.empty? %>
-    <div id="map" style="width: 99%; height: 200px">
+    <div id="map" style="width: 99%; height: 200px; margin-bottom: 15px;">
       Map
     </div>
-    <br />
+  <% end %>
+  <% if current_user && current_user==@trip.user %>
+    <p><%= link_to('Dodaj zdjęcie do podróży', new_trip_picture_path(@trip), :class => "btn") %></p>
+  <% end %>
+  <% unless @trip.pictures.empty? %>
+  <!-- Wyświetlenie miniaturek zdjęć z podróży -->
+    <ul class="thumbnails">
+      <% @trip.pictures.each do |picture| %>
+        <li class="span2">
+          <a href="#" class="thumbnail">
+            <%= image_tag(picture.image_url(:thumb).to_s, :title => '', :alt =>'') %>
+          </a>
+          <% if current_user && current_user==@trip.user %>
+            <%= link_to 'Zamień', edit_trip_picture_path(@trip.id, picture.id) %>&nbsp;&middot;
+            <%= link_to 'Usuń', trip_picture_path(@trip.id, picture.id), :confirm => 'Na pewno chcesz usunąć zdjęcie?', :method => :delete %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% unless @trip.points.empty? %>
     <h3>Punkty podróży</h3>
     <div id="points">
-      <% @trip.points.all.each do |point| %>
+      <% @trip.points.each do |point| %>
       <div class="point" id="point-<%= point.id %>">
-        <h4 class="nextto"><%= point.name %></h4>
-        <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
+        <div class="spaced">
+          <h4 class="nextto"><%= point.name %></h4>
+          <%= link_to_function 'Wskaż na mapie', %{ map.setCenter(new google.maps.LatLng(#{point.lat}, #{point.lng})) } %>
+        </div>
         <% unless point.description.empty? %>
         <div class="description"><%= simple_format(point.description) %></div>
+        <% end %>
+        <% if current_user && current_user==@trip.user %>
+          <p><%= link_to('Dodaj zdjęcie dla punktu', new_point_picture_path(point), :class => "btn btn-small") %></p>
+        <% end %>
+        <% unless point.pictures.empty? %>
+        <!-- Wyświetlenie miniaturek zdjęć z poszczególnych punktów -->
+          <ul class="thumbnails">
+            <% point.pictures.each do |picture| %>
+              <li class="span2">
+                <a href="#" class="thumbnail">
+                  <%= image_tag(picture.image_url(:thumb).to_s, :title => '', :alt =>'') %>
+                </a>
+                <% if current_user && current_user==@trip.user %>
+                  <%= link_to 'Zamień', point_picture_path(point.id, picture.id) %>&nbsp;&middot;
+                  <%= link_to 'Usuń', point_picture_path(point.id, picture.id), :confirm => 'Na pewno chcesz usunąć zdjęcie?', :method => :delete %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
         <% end %>
       </div>
       <% end %>

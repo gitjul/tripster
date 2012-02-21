@@ -2,12 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.thumbnails > .span2 {
+  width: 158px;
+  height: 158px;
+}
+
 .description {
-  padding: 5px 0 10px 0;
+  padding: 5px 0 5px 0;
 }
 
 .details > .description {
-  min-height: 125px;
+  min-height: 130px;
 }
 
 .point > .description {
