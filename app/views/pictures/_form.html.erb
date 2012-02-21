@@ -8,8 +8,8 @@
   <% end %>
 
     <% if @picture.image? %>
-      <div class="spaced well">
-        <%= image_tag(@picture.image_url(:thumb)) %>
+      <div class="spaced">
+        <%= image_tag(@picture.image_url(:picture)) %>
       </div>
     <% end %>
     <p><%= f.file_field :image %></p> <%= f.hidden_field :image_cache %>

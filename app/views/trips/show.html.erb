@@ -62,19 +62,19 @@
     </div>
   <% end %>
   <% if current_user && current_user==@trip.user %>
-    <p><%= link_to('Dodaj zdjęcie do podróży', new_trip_picture_path(@trip), :class => "btn") %></p>
+    <p><%= link_to('Dodaj zdjęcie do podróży', new_trip_picture_path(@trip), :class => "btn btn-large") %></p>
   <% end %>
   <% unless @trip.pictures.empty? %>
   <!-- Wyświetlenie miniaturek zdjęć z podróży -->
     <ul class="thumbnails">
       <% @trip.pictures.each do |picture| %>
         <li class="span2">
-          <a href="#" class="thumbnail">
-            <%= image_tag(picture.image_url(:thumb).to_s, :title => '', :alt =>'') %>
-          </a>
+            <%= link_to image_tag(picture.image_url(:thumb).to_s, :title => '', :alt => ''), trip_picture_path(@trip.id, picture.id), :class => 'thumbnail' %>
           <% if current_user && current_user==@trip.user %>
-            <%= link_to 'Zamień', edit_trip_picture_path(@trip.id, picture.id) %>&nbsp;&middot;
+          <div class="center thumblinks">
+            <%= link_to 'Zmień', edit_trip_picture_path(@trip.id, picture.id) %>&nbsp;&middot;
             <%= link_to 'Usuń', trip_picture_path(@trip.id, picture.id), :confirm => 'Na pewno chcesz usunąć zdjęcie?', :method => :delete %>
+          </div>
           <% end %>
         </li>
       <% end %>
@@ -100,12 +100,12 @@
           <ul class="thumbnails">
             <% point.pictures.each do |picture| %>
               <li class="span2">
-                <a href="#" class="thumbnail">
-                  <%= image_tag(picture.image_url(:thumb).to_s, :title => '', :alt =>'') %>
-                </a>
+                <%= link_to image_tag(picture.image_url(:thumb).to_s, :title => '', :alt => ''), point_picture_path(point.id, picture.id), :class => 'thumbnail' %>
                 <% if current_user && current_user==@trip.user %>
-                  <%= link_to 'Zamień', point_picture_path(point.id, picture.id) %>&nbsp;&middot;
+                <div class="center thumblinks">
+                  <%= link_to 'Zmień', edit_point_picture_path(point.id, picture.id) %>&nbsp;&middot;
                   <%= link_to 'Usuń', point_picture_path(point.id, picture.id), :confirm => 'Na pewno chcesz usunąć zdjęcie?', :method => :delete %>
+                </div>
                 <% end %>
               </li>
             <% end %>

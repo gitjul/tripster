@@ -3,12 +3,6 @@ class PicturesController < ApplicationController
 
   before_filter :authenticate, :only => [:new, :edit]
 
-  # GET trips/1/pictures
-  def index
-    @imageable = find_imageable
-    @pictures = @imageable.pictures
-  end
-
   # GET trips/1/pictures/1
   def show
     @imageable = find_imageable

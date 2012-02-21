@@ -1,11 +1,11 @@
 Tripster::Application.routes.draw do
 
   resources :trips do
-    resources :pictures
+    resources :pictures, :only => [:new, :create, :edit, :update, :show, :destroy]
   end
 
   resources :points, only: [] do
-      resources :pictures
+      resources :pictures, :only => [:new, :create, :edit, :update, :show, :destroy]
   end
 
   resource :user_sessions, :only => [:new, :create, :destroy]
