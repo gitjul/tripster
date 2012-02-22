@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Pomyślnie zarejestrowano konto."
-      redirect_to users_url
+      redirect_to @user
     else
       render :action => 'new'
     end
