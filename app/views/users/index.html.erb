@@ -28,7 +28,11 @@
   <% @users.each_with_index do |user, i| %>
     <div class="span4">
       <div class="span2">
+      <% if user.avatar? %>
       <%= link_to image_tag(user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{user['login']}", :alt => "Awatar użytkownika #{user['login']}"), user_path(user.id) %>
+      <% else %>
+        <%= image_tag("/assets/default_avatar.jpg", :title => "Defaultowy awatar", :alt => "Defaultowy awatar") %>
+      <% end %>
       </div>
       <div class="span2 about">
         <h3 class="nextto"><%= link_to "#{user['login']}", user_path(user.id) %></h3>

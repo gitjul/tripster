@@ -20,7 +20,11 @@
 </div>
 <div class="row showuser">
   <div class="span3 side">
-    <%= image_tag(@user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{@user['login']}") %>
+    <% if @user.avatar? %>
+      <%= image_tag(@user.avatar_url(:thumb).to_s, :title => "Awatar użytkownika #{@user['login']}", :alt => "Awatar użytkownika #{@user['login']}") %>
+    <% else %>
+      <%= image_tag("/assets/default_avatar.jpg", :title => "Defaultowy awatar", :alt => "Defaultowy awatar") %>
+    <% end %>
     <% if current_user && current_user==@user %>
       <div><%= link_to('Zmień obrazek profilowy', edit_avatar_user_path(@user), :class => "btn btn-small") %></div>
     <% end %>
