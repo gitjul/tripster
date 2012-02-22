@@ -1,6 +1,6 @@
 <%= form_for [@imageable, @picture], :html => {:multipart => true} do |f| %>
   <% if @picture.errors.any? %>
-    <ul id="errors">
+    <ul class="errors" style="text-align: center;">
       <% @picture.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
