@@ -65,9 +65,7 @@
     <div class="navbar-inner">
       <div class="container">
         <%= image_tag('globe.png', :title => 'tripster logo', :alt => 'tripster logo', :size =>'32x32', :class => 'pull-left logo') %>
-        <a class="brand" href="/">
-          tripster
-        </a>
+        <%= link_to 'tripster', root_url, :class => 'brand' %>
         <div class="pull-right">
           <ul class="nav">
           <% unless current_user %>
