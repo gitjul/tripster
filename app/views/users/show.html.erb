@@ -59,19 +59,19 @@
     <% if flash[:error] %>
     <div class="alert alert-error">
       <%= flash[:error] %>
-      <a class="close" href="<%= user_path(@user) %>">×</a>
+      <%= link_to '×', user_path(@user), :class => "close" %>
     </div>
     <% end %>
     <% if flash[:info] %>
     <div class="alert alert-info">
       <%= flash[:info] %>
-      <a class="close" href="<%= user_path(@user) %>">×</a>
+      <%= link_to '×', user_path(@user), :class => "close" %>
     </div>
     <% end %>
     <% if flash[:success] %>
     <div class="alert alert-success">
       <%= flash[:success] %>
-      <a class="close" href="<%= user_path(@user) %>">×</a>
+      <%= link_to '×', user_path(@user), :class => "close" %>
     </div>
     <% end %>
     <% unless @trips.empty? %>
